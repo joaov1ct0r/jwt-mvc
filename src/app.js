@@ -41,6 +41,32 @@ app.post("/new", bodyParser.json(), (req, res) => {
     res.send("Cadastro adicionado com sucesso");
 });
 
+app.put("/all/:index", bodyParser.json(), (req, res) => {
+    let { index } = req.params;
+
+    let { nome } = req.body;
+
+    let { email } = req.body;
+
+    let { idade } = req.body;
+
+    let { pais } = req.body;
+
+    let { senha } = req.body;
+
+    usersDb[index].nome = nome;
+
+    usersDb[index].email = email;
+
+    usersDb[index].idade = idade;
+
+    usersDb[index].pais = pais;
+
+    usersDb[index].senha = senha;
+
+    res.send("Usuario alterado com sucesso");
+});
+
 app.listen(PORT, () => {
     console.log(`Server running on port: ${PORT}`);
 });
