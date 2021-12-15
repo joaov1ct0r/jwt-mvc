@@ -1,9 +1,10 @@
 const express = require("express");
 
 const bodyParser = require("body-parser");
-const { append } = require("express/lib/response");
 
 const PORT = 3000;
+
+let app = express();
 
 let usersDb = [
     {
@@ -65,6 +66,14 @@ app.put("/all/:index", bodyParser.json(), (req, res) => {
     usersDb[index].senha = senha;
 
     res.send("Usuario alterado com sucesso");
+});
+
+app.delete("/delete/:index", (req, res) => {
+    let { index } = req.params;
+
+    delete usersDb[index];
+
+    res.send("Usuario deletado com sucesso");
 });
 
 app.listen(PORT, () => {
