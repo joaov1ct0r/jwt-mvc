@@ -25,6 +25,22 @@ app.get("/all/:index", (req, res) => {
     res.send(JSON.stringify(usersDb[index]));
 });
 
+app.post("/new", bodyParser.json(), (req, res) => {
+    let { nome } = req.body;
+
+    let { email } = req.body;
+
+    let { idade } = req.body;
+
+    let { pais } = req.body;
+
+    let { senha } = req.body;
+
+    usersDb.push({ nome, email, idade, pais, senha });
+
+    res.send("Cadastro adicionado com sucesso");
+});
+
 app.listen(PORT, () => {
     console.log(`Server running on port: ${PORT}`);
 });
