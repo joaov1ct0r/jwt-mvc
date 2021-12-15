@@ -15,6 +15,10 @@ let usersDb = [
     }
 ];
 
+app.get("/all", (req, res) => {
+    res.send(JSON.stringify(usersDb));
+});
+
 app.listen(PORT, () => {
     console.log(`Server running on port: ${PORT}`);
 });
