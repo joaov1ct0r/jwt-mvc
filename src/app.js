@@ -19,6 +19,12 @@ app.get("/all", (req, res) => {
     res.send(JSON.stringify(usersDb));
 });
 
+app.get("/all/:index", (req, res) => {
+    let { index } = req.params;
+
+    res.send(JSON.stringify(usersDb[index]));
+});
+
 app.listen(PORT, () => {
     console.log(`Server running on port: ${PORT}`);
 });
