@@ -8,16 +8,6 @@ const PORT = 3000;
 
 let app = express();
 
-let usersDb = [
-    {
-        nome: "Marco aurelio",
-        email: "teste123@email.com",
-        idade: "19",
-        pais: "Brasil",
-        senha: "fladkjl"
-    }
-];
-
 app.use("/", express.static(path.join(__dirname, "/view")));
 
 app.get("/all", (req, res) => {
