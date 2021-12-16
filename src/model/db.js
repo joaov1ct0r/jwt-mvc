@@ -17,5 +17,9 @@ newUser (nome, email, idade, pais, senha){
     idade, 
     pais, 
     senha})
+},
+
+deleteUser(index){
+  delete this.usersDb[index]
 }
 }
