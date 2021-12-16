@@ -4,14 +4,16 @@ const router = express.Router();
 
 const bodyParser = require("body-parser");
 
+const usersDb = require("../model/db");
+
 router.get("/all", (req, res) => {
-    res.send(JSON.stringify(usersDb));
+    res.send(JSON.stringify(usersDb.getUsers()));
 });
 
 router.get("/all/:index", (req, res) => {
     let { index } = req.params;
 
-    res.send(JSON.stringify(usersDb[index]));
+    res.send(JSON.stringify(usersDb.getUser(index)));
 });
 
 router.post("/new", bodyParser.json(), (req, res) => {
@@ -25,7 +27,7 @@ router.post("/new", bodyParser.json(), (req, res) => {
 
     let { senha } = req.body;
 
-    usersDb.push({ nome, email, idade, pais, senha });
+    usersDb.newUser(nome, email, idade, pais, senha);
 
     res.send("Cadastro adicionado com sucesso");
 });
@@ -43,15 +45,7 @@ router.put("/all/:index", bodyParser.json(), (req, res) => {
 
     let { senha } = req.body;
 
-    usersDb[index].nome = nome;
-
-    usersDb[index].email = email;
-
-    usersDb[index].idade = idade;
-
-    usersDb[index].pais = pais;
-
-    usersDb[index].senha = senha;
+    usersDb.changeUser(index, nome, email, idade, pais, senha);
 
     res.send("Usuario alterado com sucesso");
 });
@@ -59,7 +53,9 @@ router.put("/all/:index", bodyParser.json(), (req, res) => {
 router.delete("/delete/:index", (req, res) => {
     let { index } = req.params;
 
-    delete usersDb[index];
+    usersDb.deleteUser(index);
 
     res.send("Usuario deletado com sucesso");
 });
+
+module.exports = router;
