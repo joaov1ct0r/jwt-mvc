@@ -35,3 +35,7 @@ changeUser (index, nome, email, idade, pais, senha){
     this.usersDb[index].senha = senha;
 }
 }
+
+let generateId = () => {
+  return Math.random().toString(26).substring(2, 9)
+}
