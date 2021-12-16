@@ -2,6 +2,8 @@ const express = require("express");
 
 const bodyParser = require("body-parser");
 
+const path = require("path");
+
 const PORT = 3000;
 
 let app = express();
@@ -15,6 +17,8 @@ let usersDb = [
         senha: "fladkjl"
     }
 ];
+
+app.use("/", express.static(path.join(__dirname, "/view")));
 
 app.get("/all", (req, res) => {
     res.send(JSON.stringify(usersDb));
