@@ -1,17 +1,8 @@
-// document.addEventListener('DOMContentLoaded', () => {
-//   attData()
-// })
-// let attData = () {
-//   let url = "http://localhost:3000/api/all"
+let loginContainer = document.getElementById("login-container");
 
-//   fetch(url).then(res => {
-//     let data = res.json()
+let cadastroContainer = document.getElementById("cadastro-container");
 
-//     return data
-//   }).then(data => {
-
-//   })
-// }
+let infoContainer = document.getElementById("info-container");
 
 const submitCadastro = document.getElementById("submitCadastro");
 
@@ -53,4 +44,46 @@ function newUser() {
 
         document.getElementById("senha").value = "";
     });
+}
+
+let loginLink = document.getElementById("loginLink");
+
+loginLink.addEventListener("click", () => {
+    showLogin();
+});
+
+function showLogin() {
+    cadastroContainer.setAttribute("hidden", "hidden");
+
+    infoContainer.setAttribute("hidden", "hidden");
+
+    loginContainer.removeAttribute("hidden");
+}
+
+let cadastroLink = document.getElementById("cadastroLink");
+
+cadastroLink.addEventListener("click", () => {
+    showCadastro();
+});
+
+function showCadastro() {
+    infoContainer.setAttribute("hidden", "hidden");
+
+    loginContainer.setAttribute("hidden", "hidden");
+
+    cadastroContainer.removeAttribute("hidden");
+}
+
+let infoLink = document.getElementById("infoLink");
+
+infoLink.addEventListener("click", () => {
+    showInfo();
+});
+
+function showInfo() {
+    loginContainer.setAttribute("hidden", "hidden");
+
+    cadastroContainer.setAttribute("hidden", "hidden");
+
+    infoContainer.removeAttribute("hidden");
 }
