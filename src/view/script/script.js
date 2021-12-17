@@ -87,3 +87,29 @@ function newUser() {
         document.getElementById("senha").value = "";
     });
 }
+
+let submitLogin = document.getElementById("submitLogin");
+
+submitLogin.addEventListener("click", () => {
+    doLogin();
+});
+
+function doLogin() {
+    let emailInput = document.getElementById("email").value;
+
+    let senhaInput = document.getElementById("senha").value;
+
+    let url = "http://localhost:3000/api/all";
+
+    fetch(url)
+        .then(res => {
+            let data = res.json();
+
+            return data;
+        })
+        .then(data => {
+            if (data[0].email === emailInput && data[0].senha === senhaInput) {
+                console.log("Login realizado com sucesso");
+            }
+        });
+}
