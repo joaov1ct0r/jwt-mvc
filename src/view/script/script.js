@@ -99,17 +99,21 @@ function doLogin() {
 
     let senhaInput = document.getElementById("senha").value;
 
+    let login = { emailInput, senhaInput };
+
     let url = "http://localhost:3000/api/all";
 
-    fetch(url)
-        .then(res => {
-            let data = res.json();
+    let options = {
+        method: "POST",
+        body: JSON.stringify(login),
+        headers: { "Content-type": "application/json; charset=UTF-8" }
+    };
 
-            return data;
-        })
-        .then(data => {
-            if (data[0].email === emailInput && data[0].senha === senhaInput) {
-                console.log("Login realizado com sucesso");
-            }
-        });
+    fetch(url, options).then(res => {
+        console.log(res);
+
+        document.getElementById("email").value = "";
+
+        document.getElementById("senha").value = "";
+    });
 }
