@@ -6,17 +6,17 @@ const bodyParser = require("body-parser");
 
 const usersDb = require("../model/db");
 
-router.get("/all", (req, res) => {
+router.get("/cadastros/all", (req, res) => {
     res.send(JSON.stringify(usersDb.getUsers()));
 });
 
-router.get("/all/:index", (req, res) => {
+router.get("cadastros/all/:index", (req, res) => {
     let { index } = req.params;
 
     res.send(JSON.stringify(usersDb.getUser(index)));
 });
 
-router.post("/new", bodyParser.json(), (req, res) => {
+router.post("/cadastros/new", bodyParser.json(), (req, res) => {
     let { nome } = req.body;
 
     let { email } = req.body;
@@ -32,7 +32,7 @@ router.post("/new", bodyParser.json(), (req, res) => {
     res.send("Cadastro adicionado com sucesso");
 });
 
-router.put("/all/:index", bodyParser.json(), (req, res) => {
+router.put("/cadastros/all/:index", bodyParser.json(), (req, res) => {
     let { index } = req.params;
 
     let { nome } = req.body;
@@ -50,7 +50,7 @@ router.put("/all/:index", bodyParser.json(), (req, res) => {
     res.send("Usuario alterado com sucesso");
 });
 
-router.delete("/delete/:index", (req, res) => {
+router.delete("/cadastros/delete/:index", (req, res) => {
     let { index } = req.params;
 
     usersDb.deleteUser(index);
