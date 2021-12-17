@@ -20,6 +20,20 @@ module.exports = {
         });
     },
 
+    userLogin(email, senha) {
+        if (
+            email !== this.usersDb[0].email ||
+            senha !== this.usersDb[0].senha
+        ) {
+            return "Falha na autenticação";
+        } else if (
+            email == this.usersDb[0].email &&
+            senha == this.usersDb[0].senha
+        ) {
+            return "Login realizado com sucesso";
+        }
+    },
+
     deleteUser(index) {
         delete this.usersDb[index];
     },

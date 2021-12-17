@@ -32,6 +32,16 @@ router.post("/cadastros/new", bodyParser.json(), (req, res) => {
     res.send("Cadastro adicionado com sucesso");
 });
 
+router.post("/cadastros/login", bodyParser.json(), (req, res) => {
+    let { email } = req.body;
+
+    let { senha } = req.body;
+
+    let resp = usersDb.userLogin(email, senha);
+
+    res.send(resp);
+});
+
 router.put("/cadastros/all/:index", bodyParser.json(), (req, res) => {
     let { index } = req.params;
 
