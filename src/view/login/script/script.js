@@ -26,7 +26,14 @@ function doLogin() {
 
         document.getElementById("senha").value = "";
 
-        showInfo();
+        let viewContainer = document.getElementById("view-container");
+
+        viewContainer.innerHTML = `
+            <div id="user-response">
+                <p>LOGIN REALIZADO COM SUCESSO</p>
+            </div>`;
+
+        // showInfo();
     });
 }
 
