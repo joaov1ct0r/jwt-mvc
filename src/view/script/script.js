@@ -101,7 +101,7 @@ infoLink.addEventListener("click", () => {
 });
 
 function showInfo() {
-    let url = "http://localhost:3000/api/cadastros/all";
+    let url = "http://localhost:3000/api/all";
 
     fetch(url)
         .then(res => {
@@ -168,7 +168,7 @@ function newUser() {
 
     let user = { nome, email, idade, pais, senha };
 
-    const url = "http://localhost:3000/api/cadastros/new";
+    const url = "http://localhost:3000/api/new";
 
     const options = {
         method: "POST",
@@ -204,7 +204,7 @@ function doLogin() {
 
     let login = { emailInput, senhaInput };
 
-    let url = "http://localhost:3000/api/cadastros/login";
+    let url = "http://localhost:3000/api/login";
 
     let options = {
         method: "POST",

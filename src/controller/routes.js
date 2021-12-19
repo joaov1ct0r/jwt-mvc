@@ -36,7 +36,7 @@ router.post("/login", bodyParser.json(), (req, res) => {
     res.send(resp);
 });
 
-router.put("/all/:index", bodyParser.json(), (req, res) => {
+router.put("/edit/:index", bodyParser.json(), (req, res) => {
     let { index } = req.params;
 
     let { nome } = req.body;
