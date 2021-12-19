@@ -27,8 +27,9 @@
 
 <h2>Picture</h2>
 
-![cadsys](https://user-images.githubusercontent.com/79015823/146565862-a81f13ae-0707-43bd-aba3-ab0082aa553c.jpg)
+![cadsys](https://user-images.githubusercontent.com/79015823/146680225-a44bb9b0-e1b3-4695-bed9-04823e565aae.jpg)
 
-![infosys](https://user-images.githubusercontent.com/79015823/146565894-adeed48e-7c0e-43cf-9ec0-4425a48c6f95.jpg)
+![loginsys](https://user-images.githubusercontent.com/79015823/146680232-40def1fe-03a2-49b9-9a1f-4aa5a87ba409.jpg)
 
-![loginsys](https://user-images.githubusercontent.com/79015823/146565920-85276ecd-812c-48d7-b6f9-05d27966ece6.jpg)
+![infosys](https://user-images.githubusercontent.com/79015823/146680233-c6fe5e2c-f50b-4447-89cb-2f03401529b7.jpg)
+
