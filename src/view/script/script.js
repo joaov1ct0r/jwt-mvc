@@ -4,6 +4,8 @@ let cadastroContainer = document.getElementById("cadastro-container");
 
 let infoContainer = document.getElementById("info-container");
 
+let viewContainer = document.getElementById("view-container");
+
 let loginLink = document.getElementById("loginLink");
 
 loginLink.addEventListener("click", () => {
@@ -11,11 +13,38 @@ loginLink.addEventListener("click", () => {
 });
 
 function showLogin() {
-    cadastroContainer.setAttribute("hidden", "hidden");
+    viewContainer.innerHTML = `
+        <div id="login-container">
+            <h1>Faça login</h1>
 
-    infoContainer.setAttribute("hidden", "hidden");
+            <br />
 
-    loginContainer.removeAttribute("hidden");
+            <label for="email">Digite seu email</label>
+            <br />
+            <input
+                type="email"
+                placeholder="Email"
+                name="email"
+                id="email"
+            />
+
+            <br />
+
+            <label for="senha">Digite sua senha</label>
+            <br />
+            <input
+                type="password"
+                placeholder="Senha"
+                name="senha"
+                id="senha"
+            />
+
+            <br />
+
+            <button type="button" id="submitLogin">Logar</button>
+
+            <br />
+        </div>`;
 }
 
 let cadastroLink = document.getElementById("cadastroLink");
@@ -25,11 +54,44 @@ cadastroLink.addEventListener("click", () => {
 });
 
 function showCadastro() {
-    infoContainer.setAttribute("hidden", "hidden");
+    viewContainer.innerHTML = `
+        <div id="cadastro-container">
+            <h1>CADASTRE-SE</h1>
+            <label for="nome">Digite seu nome</label>
+            <br />
+            <input type="name" placeholder="Nome" name="nome" id="nome" />
 
-    loginContainer.setAttribute("hidden", "hidden");
+            <br />
 
-    cadastroContainer.removeAttribute("hidden");
+            <label for="email">Digite seu email</label>
+            <br />
+            <input type="email" placeholder="Email" name="email" id="email"/>
+
+            <br />
+
+            <label for="idade">Digite sua Idade</label>
+            <br />
+            <input type="number" placeholder="Idade" name="idade" id="idade"
+            />
+
+            <br />
+
+            <label for="pais">Digite seu país</label>
+            <br />
+            <input type="text" placeholder="País" name="pais" id="pais" />
+
+            <br />
+
+            <label for="senha">Digite sua senha</label>
+            <br />
+            <input type="password" placeholder="Senha" name="senha id="senha" />
+
+            <br />
+
+            <button id="submitCadastro">Enviar</button>
+
+            <br />
+        </div>`;
 }
 
 let infoLink = document.getElementById("infoLink");
@@ -39,11 +101,42 @@ infoLink.addEventListener("click", () => {
 });
 
 function showInfo() {
-    loginContainer.setAttribute("hidden", "hidden");
+    viewContainer.innerHTML = `
+        <div id="info-container">
+            <h1>Minhas Informações</h1>
 
-    cadastroContainer.setAttribute("hidden", "hidden");
+            <br />
 
-    infoContainer.removeAttribute("hidden");
+            <label for="nome">Seu nome</label>
+            <br />
+            <input type="name" placeholder="Nome" name="nome" id="nome" />
+
+            <br />
+
+            <label for="email">Seu email</label>
+            <br />
+            <input type="email" placeholder="Email" name="email" id="email"
+            />
+
+            <br />
+
+            <label for="idade">Sua Idade</label>
+            <br />
+            <input type="number" placeholder="Idade" name="idade" id="idade"
+            />
+
+            <br />
+
+            <label for="pais">Seu país</label>
+            <br />
+            <input type="text" placeholder="País" name="pais" id="pais" />
+
+            <br />
+
+            <label for="senha">Sua senha</label>
+            <br />
+            <input type="password" placeholder="Senha" name="senha" id="senha" />
+        </div>`;
 }
 
 const submitCadastro = document.getElementById("submitCadastro");
