@@ -12,6 +12,8 @@ app.use("/", express.static(path.join(__dirname, "/view")));
 
 app.use("/cadastro", express.static(path.join(__dirname, "/view/cadastro")));
 
+app.use("/login", express.static(path.join(__dirname, "/view/login")));
+
 const PORT = 3000;
 
 app.listen(PORT, () => {
