@@ -168,7 +168,7 @@ function newUser() {
 
     let user = { nome, email, idade, pais, senha };
 
-    const url = "http://localhost:3000/api/new";
+    const url = "http://localhost:3000/api/cadastros/new";
 
     const options = {
         method: "POST",
@@ -204,7 +204,7 @@ function doLogin() {
 
     let login = { emailInput, senhaInput };
 
-    let url = "http://localhost:3000/api/all";
+    let url = "http://localhost:3000/api/cadastros/login";
 
     let options = {
         method: "POST",
@@ -218,5 +218,7 @@ function doLogin() {
         document.getElementById("email").value = "";
 
         document.getElementById("senha").value = "";
+
+        showInfo();
     });
 }
