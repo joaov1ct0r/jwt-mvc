@@ -10,6 +10,8 @@ app.use("/api", routes);
 
 app.use("/", express.static(path.join(__dirname, "/view")));
 
+app.use("/cadastro", express.static(path.join(__dirname, "/view/cadastro")));
+
 const PORT = 3000;
 
 app.listen(PORT, () => {
