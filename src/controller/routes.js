@@ -6,17 +6,11 @@ const bodyParser = require("body-parser");
 
 const usersDb = require("../model/db");
 
-router.get("/cadastros/all", (req, res) => {
+router.get("/all", (req, res) => {
     res.send(JSON.stringify(usersDb.getUsers()));
 });
 
-router.get("cadastros/all/:index", (req, res) => {
-    let { index } = req.params;
-
-    res.send(JSON.stringify(usersDb.getUser(index)));
-});
-
-router.post("/cadastros/new", bodyParser.json(), (req, res) => {
+router.post("/new", bodyParser.json(), (req, res) => {
     let { nome } = req.body;
 
     let { email } = req.body;
@@ -32,7 +26,7 @@ router.post("/cadastros/new", bodyParser.json(), (req, res) => {
     res.send("Cadastro adicionado com sucesso");
 });
 
-router.post("/cadastros/login", bodyParser.json(), (req, res) => {
+router.post("/login", bodyParser.json(), (req, res) => {
     let { email } = req.body;
 
     let { senha } = req.body;
@@ -42,7 +36,7 @@ router.post("/cadastros/login", bodyParser.json(), (req, res) => {
     res.send(resp);
 });
 
-router.put("/cadastros/all/:index", bodyParser.json(), (req, res) => {
+router.put("/all/:index", bodyParser.json(), (req, res) => {
     let { index } = req.params;
 
     let { nome } = req.body;
