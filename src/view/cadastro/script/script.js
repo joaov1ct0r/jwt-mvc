@@ -37,5 +37,12 @@ function newUser() {
         document.getElementById("pais").value = "";
 
         document.getElementById("senha").value = "";
+
+        let viewContainer = document.getElementById("view-container");
+
+        viewContainer.innerHTML = `
+            <div id="user-response">
+                <p>CADASTRO REALIZADO COM SUCESSO</p>
+            </div>`;
     });
 }
