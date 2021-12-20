@@ -28,21 +28,40 @@ function newUser() {
     fetch(url, options).then(res => {
         console.log(res);
 
-        document.getElementById("nome").value = "";
+        if (res.status === 200) {
+            document.getElementById("nome").value = "";
 
-        document.getElementById("email").value = "";
+            document.getElementById("email").value = "";
 
-        document.getElementById("idade").value = "";
+            document.getElementById("idade").value = "";
 
-        document.getElementById("pais").value = "";
+            document.getElementById("pais").value = "";
 
-        document.getElementById("senha").value = "";
+            document.getElementById("senha").value = "";
 
-        let viewContainer = document.getElementById("view-container");
+            let viewContainer = document.getElementById("view-container");
 
-        viewContainer.innerHTML = `
+            viewContainer.innerHTML = `
             <div id="user-response">
                 <p>CADASTRO REALIZADO COM SUCESSO</p>
             </div>`;
+        } else {
+            document.getElementById("nome").value = "";
+
+            document.getElementById("email").value = "";
+
+            document.getElementById("idade").value = "";
+
+            document.getElementById("pais").value = "";
+
+            document.getElementById("senha").value = "";
+
+            let viewContainer = document.getElementById("view-container");
+
+            viewContainer.innerHTML = `
+            <div id="user-response">
+                <p>FALHA NO CADASTRO</p>
+            </div>`;
+        }
     });
 }

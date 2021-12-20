@@ -21,9 +21,13 @@ router.post("/new", bodyParser.json(), (req, res) => {
 
     let { senha } = req.body;
 
-    usersDb.newUser(nome, email, idade, pais, senha);
+    if (nome && email && idade && pais && senha) {
+        usersDb.newUser(nome, email, idade, pais, senha);
 
-    res.send("Cadastro adicionado com sucesso");
+        res.status(200).send("Cadastro adicionado com sucesso");
+    } else {
+        res.status(400).send("Falha no cadastramento");
+    }
 });
 
 router.post("/login", bodyParser.json(), (req, res) => {
