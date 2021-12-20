@@ -22,16 +22,29 @@ function doLogin() {
     fetch(url, options).then(res => {
         console.log(res);
 
-        document.getElementById("email").value = "";
+        if (res.status === 200) {
+            document.getElementById("email").value = "";
 
-        document.getElementById("senha").value = "";
+            document.getElementById("senha").value = "";
 
-        let viewContainer = document.getElementById("view-container");
+            let viewContainer = document.getElementById("view-container");
 
-        viewContainer.innerHTML = `
+            viewContainer.innerHTML = `
             <div id="user-response">
                 <p>LOGIN REALIZADO COM SUCESSO</p>
             </div>`;
+        } else if (res.status === 500) {
+            document.getElementById("email").value = "";
+
+            document.getElementById("senha").value = "";
+
+            let viewContainer = document.getElementById("view-container");
+
+            viewContainer.innerHTML = `
+            <div id="user-response">
+                <p>FALHA NA AUTENTICAÇÃO</p>
+            </div>`;
+        }
 
         // showInfo();
     });
