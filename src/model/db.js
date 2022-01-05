@@ -52,6 +52,28 @@ let changeUser = (index, nome, email, idade, pais, senha, callback) => {
     });
 };
 
+// FAZ O LOGIN DE UM USUARIO
+let userLogin = (email, senha, callback) => {
+    let SQL = `SELECT email, senha FROM usuarios WHERE email = ? AND senha = ?`;
+    let params = [email, senha];
+
+    db.query(SQL, params, (err, result) => {
+        if (err) {
+            throw err;
+        }
+        callback(result);
+    });
+    if (email !== this.usersDb[0].email || senha !== this.usersDb[0].senha) {
+        return 'Falha na autenticação';
+    } else if (
+        email == this.usersDb[0].email &&
+        senha == this.usersDb[0].senha
+    ) {
+        return 'Login realizado com sucesso';
+    }
+};
+
+// DELETA UM CADASTRO
 let deleteUser = (index, callback) => {
     let SQL = `DELETE FROM usuarios WHERE id = ?`;
 
@@ -70,19 +92,7 @@ module.exports = {
 
     newUser,
 
-    userLogin(email, senha) {
-        if (
-            email !== this.usersDb[0].email ||
-            senha !== this.usersDb[0].senha
-        ) {
-            return 'Falha na autenticação';
-        } else if (
-            email == this.usersDb[0].email &&
-            senha == this.usersDb[0].senha
-        ) {
-            return 'Login realizado com sucesso';
-        }
-    },
+    userLogin,
 
     deleteUser,
 
