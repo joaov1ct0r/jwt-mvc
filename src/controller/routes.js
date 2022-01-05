@@ -42,9 +42,15 @@ router.post('/login', bodyParser.json(), (req, res) => {
 
     let { senha } = req.body;
 
-    let resp = db.userLogin(email, senha);
-
-    res.send(resp);
+    let request = db.userLogin(email, senha, async function (result) {
+        if (result.length < 1) {
+            console.log(result);
+            res.send('Falha na autenticação');
+        } else {
+            console.log(result);
+            res.send('Autenticação realizada com sucesso');
+        }
+    });
 });
 
 router.put('/edit/:index', bodyParser.json(), (req, res) => {
