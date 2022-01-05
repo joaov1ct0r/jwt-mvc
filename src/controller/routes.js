@@ -49,10 +49,10 @@ router.post('/login', bodyParser.json(), (req, res) => {
     let request = db.userLogin(email, senha, async function (result) {
         if (result.length < 1) {
             console.log(result);
-            res.send('Falha na autenticação');
+            res.status(500).send('Falha na autenticação');
         } else {
             console.log(result);
-            res.send('Autenticação realizada com sucesso');
+            res.status(200).send('Autenticação realizada com sucesso');
         }
     });
 });

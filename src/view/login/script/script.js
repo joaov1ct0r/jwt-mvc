@@ -1,65 +1,63 @@
-let submitLogin = document.getElementById("submitLogin");
+let submitLogin = document.getElementById('submitLogin');
 
-submitLogin.addEventListener("click", () => {
+submitLogin.addEventListener('click', () => {
     doLogin();
 });
 
 function doLogin() {
-    let emailInput = document.getElementById("email").value;
+    let email = document.getElementById('email').value;
 
-    let senhaInput = document.getElementById("senha").value;
+    let senha = document.getElementById('senha').value;
 
-    let login = { emailInput, senhaInput };
-
-    let url = "http://localhost:3000/api/login";
+    let url = 'http://localhost:3000/api/login';
 
     let options = {
-        method: "POST",
-        body: JSON.stringify(login),
-        headers: { "Content-type": "application/json; charset=UTF-8" }
+        method: 'POST',
+        body: JSON.stringify({ email, senha }),
+        headers: { 'Content-type': 'application/json; charset=UTF-8' }
     };
 
     fetch(url, options).then(res => {
         console.log(res);
 
         if (res.status === 200) {
-            document.getElementById("email").value = "";
+            document.getElementById('email').value = '';
 
-            document.getElementById("senha").value = "";
+            document.getElementById('senha').value = '';
 
-            let viewContainer = document.getElementById("view-container");
+            let viewContainer = document.getElementById('view-container');
 
             viewContainer.innerHTML = `
-            <div id="user-response">
-                <p>LOGIN REALIZADO COM SUCESSO</p>
-            </div>`;
+                <div id="user-response">
+                    <p>AUTENTICAÇÃO REALIZADA COM SUCESSO</p>
+                </div>`;
         } else if (res.status === 500) {
-            document.getElementById("email").value = "";
+            document.getElementById('email').value = '';
 
-            document.getElementById("senha").value = "";
+            document.getElementById('senha').value = '';
 
-            let viewContainer = document.getElementById("view-container");
+            let viewContainer = document.getElementById('view-container');
 
             viewContainer.innerHTML = `
-            <div id="user-response">
-                <p>FALHA NA AUTENTICAÇÃO</p>
-            </div>`;
+                <div id="user-response">
+                    <p>FALHA NA AUTENTICAÇÃO</p>
+                </div>`;
         }
 
-        // showInfo();
+        showInfo();
     });
 }
 
-let viewContainer = document.getElementById("view-container");
+let viewContainer = document.getElementById('view-container');
 
-let infoLink = document.getElementById("infoLink");
+let infoLink = document.getElementById('infoLink');
 
-infoLink.addEventListener("click", () => {
+infoLink.addEventListener('click', () => {
     showInfo();
 });
 
 function showInfo() {
-    let url = "http://localhost:3000/api/all";
+    let url = 'http://localhost:3000/api/all';
 
     fetch(url)
         .then(res => {
