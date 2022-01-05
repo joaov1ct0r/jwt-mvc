@@ -8,9 +8,17 @@ let db = mysql.createConnection({
 });
 
 // RETORNA UM CADASTRO EM ESPECIFICO
-let getUser = (index, callback) => {
-    let SQL = `SELECT * FROM usuarios WHERE email = ?`;
-    return this.usersDb[index];
+let getUser = (email, senha, callback) => {
+    let SQL = `SELECT * FROM usuarios WHERE email = ? AND senha = ?`;
+
+    let params = [email, senha];
+
+    db.query(SQL, params, (err, result) => {
+        if (err) {
+            throw err;
+        }
+        callback(result);
+    });
 };
 
 // INSERE UM NOVO USUARIOS NO DB
@@ -67,8 +75,6 @@ let deleteUser = (index, callback) => {
 };
 
 module.exports = {
-    getUsers,
-
     getUser,
 
     newUser,
@@ -78,8 +84,4 @@ module.exports = {
     deleteUser,
 
     changeUser
-};
-
-let generateId = () => {
-    return Math.random().toString(26).substring(2, 9);
 };
