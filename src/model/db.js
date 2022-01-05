@@ -39,14 +39,15 @@ let newUser = (nome, email, idade, pais, senha, callback) => {
 };
 
 let deleteUser = (index, callback) => {
-    let SQL = `DELETE FROM usuarios WHERE id = ?`
+    let SQL = `DELETE FROM usuarios WHERE id = ?`;
 
     db.query(SQL, index, (err, result) => {
-        if(err) {
+        if (err) {
             throw err;
-        } callback(result)
-    })
-}
+        }
+        callback(result);
+    });
+};
 
 module.exports = {
     getUsers,
@@ -69,7 +70,7 @@ module.exports = {
         }
     },
 
-    ,
+    deleteUser,
 
     changeUser(index, nome, email, idade, pais, senha) {
         this.usersDb[index].nome = nome;

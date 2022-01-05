@@ -65,12 +65,14 @@ router.put('/edit/:index', bodyParser.json(), (req, res) => {
     res.send('Usuario alterado com sucesso');
 });
 
-router.delete('/cadastros/delete/:index', (req, res) => {
+router.delete('/delete/:index', (req, res) => {
     let { index } = req.params;
 
-    db.deleteUser(index);
+    let request = db.deleteUser(index, function (result) {
+        console.log(result);
 
-    res.send('Usuario deletado com sucesso');
+        res.send('Usuario deletado com sucesso');
+    });
 });
 
 module.exports = router;
