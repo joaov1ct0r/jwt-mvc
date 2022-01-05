@@ -6,12 +6,6 @@ const bodyParser = require('body-parser');
 
 const db = require('../model/db.js');
 
-router.get('/all', (req, res) => {
-    let request = db.getUsers(function (result) {
-        res.send(JSON.stringify(result));
-    });
-});
-
 router.post('/new', bodyParser.json(), (req, res) => {
     let { nome } = req.body;
 
