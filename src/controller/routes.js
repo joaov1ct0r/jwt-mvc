@@ -23,11 +23,18 @@ router.post('/new', bodyParser.json(), (req, res) => {
 
     let { senha } = req.body;
 
-    db.newUser(nome, email, idade, pais, senha, function (result) {
-        console.log(result);
+    let request = db.newUser(
+        nome,
+        email,
+        idade,
+        pais,
+        senha,
+        function (result) {
+            console.log(result);
 
-        res.send('Cadastro adicionado com sucesso');
-    });
+            res.send('Cadastro adicionado com sucesso');
+        }
+    );
 });
 
 router.post('/login', bodyParser.json(), (req, res) => {

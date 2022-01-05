@@ -38,6 +38,16 @@ let newUser = (nome, email, idade, pais, senha, callback) => {
     });
 };
 
+let deleteUser = (index, callback) => {
+    let SQL = `DELETE FROM usuarios WHERE id = ?`
+
+    db.query(SQL, index, (err, result) => {
+        if(err) {
+            throw err;
+        } callback(result)
+    })
+}
+
 module.exports = {
     getUsers,
 
@@ -59,9 +69,7 @@ module.exports = {
         }
     },
 
-    deleteUser(index) {
-        delete this.usersDb[index];
-    },
+    ,
 
     changeUser(index, nome, email, idade, pais, senha) {
         this.usersDb[index].nome = nome;
