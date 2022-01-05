@@ -180,6 +180,30 @@ viewContainer.addEventListener('click', event => {
                     showInfo(email, senha);
                 });
             }
+        } else if (button.textContent === 'Remover') {
+            let url = `http://localhost:3000/api/delete/${infoContainer.className}`;
+
+            let options = {
+                method: 'DELETE',
+                body: null,
+                headers: {
+                    'Content-type': 'application/json; charset=UTF-8'
+                }
+            };
+
+            fetch(url, options).then(res => {
+                console.log(res);
+
+                if (res.status === 200) {
+                    infoContainer.innerHTML = `<div id="user-response">
+                                                <p>CADASTRO DELETADO COM SUCESSO</p>
+                                              </div>`;
+                } else {
+                    infoContainer.innerHTML = `<div id="user-response">
+                                                <p>FALHA NA AUTENTICAÇÃO</p>
+                                              </div>`;
+                }
+            });
         }
     }
 });
