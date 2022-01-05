@@ -60,9 +60,19 @@ router.put('/edit/:index', bodyParser.json(), (req, res) => {
 
     let { senha } = req.body;
 
-    db.changeUser(index, nome, email, idade, pais, senha);
+    let request = db.changeUser(
+        index,
+        nome,
+        email,
+        idade,
+        pais,
+        senha,
+        function (result) {
+            console.log(result);
 
-    res.send('Usuario alterado com sucesso');
+            res.send('Usuario alterado com sucesso');
+        }
+    );
 });
 
 router.delete('/delete/:index', (req, res) => {
