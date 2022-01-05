@@ -7,17 +7,6 @@ let db = mysql.createConnection({
     database: 'cadLoginSys'
 });
 
-// RETORNA TODOS OS CADASTROS
-let getUsers = callback => {
-    let SQL = `SELECT * FROM usuarios`;
-    db.query(SQL, (err, result) => {
-        if (err) {
-            throw err;
-        }
-        callback(result);
-    });
-};
-
 // RETORNA UM CADASTRO EM ESPECIFICO
 let getUser = (index, callback) => {
     let SQL = `SELECT * FROM usuarios WHERE email = ?`;
