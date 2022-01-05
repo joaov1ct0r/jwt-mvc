@@ -38,6 +38,20 @@ let newUser = (nome, email, idade, pais, senha, callback) => {
     });
 };
 
+// ALTERA DADOS DO CADASTRO DO USUARIO
+let changeUser = (index, nome, email, idade, pais, senha, callback) => {
+    let SQL = `UPDATE usuarios SET nome = ?, email = ?, idade = ?, pais = ?, senha = ? WHERE id = ?`;
+
+    let params = [nome, email, idade, pais, senha, index];
+
+    db.query(SQL, params, (err, result) => {
+        if (err) {
+            throw err;
+        }
+        callback(result);
+    });
+};
+
 let deleteUser = (index, callback) => {
     let SQL = `DELETE FROM usuarios WHERE id = ?`;
 
@@ -72,17 +86,7 @@ module.exports = {
 
     deleteUser,
 
-    changeUser(index, nome, email, idade, pais, senha) {
-        this.usersDb[index].nome = nome;
-
-        this.usersDb[index].email = email;
-
-        this.usersDb[index].idade = idade;
-
-        this.usersDb[index].pais = pais;
-
-        this.usersDb[index].senha = senha;
-    }
+    changeUser
 };
 
 let generateId = () => {
