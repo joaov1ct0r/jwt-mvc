@@ -1,5 +1,5 @@
 * {
-    font-family: "Times New Roman", Times, serif;
+    font-family: 'Times New Roman', Times, serif;
     border: 0;
     padding: 0;
     margin: 0;
@@ -137,3 +137,28 @@ button:hover {
     background-color: white;
     transition: 0.5s;
 }
+
+#info-container button {
+    display: inline;
+    font-size: 10px;
+    margin: auto 0 0 25px;
+    border-radius: 3px;
+    padding: 5px 5px;
+    color: white;
+    background: #70b3ff;
+    border: 0;
+    cursor: pointer;
+    transition: opacity 0.3s linear;
+}
+
+#info-container button:hover {
+    opacity: 0.7;
+}
+
+/* .editInput {
+    display: block;
+    margin: auto;
+    text-align: center;
+    padding: 2px 2px;
+    background-color: #9e9e9e;
+} */

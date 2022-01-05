@@ -25,12 +25,7 @@ function doLogin() {
 
             document.getElementById('senha').value = '';
 
-            let viewContainer = document.getElementById('view-container');
-
-            viewContainer.innerHTML = `
-                <div id="user-response">
-                    <p>AUTENTICAÇÃO REALIZADA COM SUCESSO</p>
-                </div>`;
+            showInfo(email, senha);
         } else if (res.status === 500) {
             document.getElementById('email').value = '';
 
@@ -43,29 +38,27 @@ function doLogin() {
                     <p>FALHA NA AUTENTICAÇÃO</p>
                 </div>`;
         }
-
-        showInfo();
     });
 }
 
-let viewContainer = document.getElementById('view-container');
+function showInfo(email, senha) {
+    let url = 'http://localhost:3000/api/info';
 
-let infoLink = document.getElementById('infoLink');
+    let options = {
+        method: 'POST',
+        body: JSON.stringify({ email, senha }),
+        headers: { 'Content-type': 'application/json; charset=UTF-8' }
+    };
 
-infoLink.addEventListener('click', () => {
-    showInfo();
-});
-
-function showInfo() {
-    let url = 'http://localhost:3000/api/all';
-
-    fetch(url)
+    fetch(url, options)
         .then(res => {
             let data = res.json();
 
             return data;
         })
         .then(data => {
+            let viewContainer = document.getElementById('view-container');
+
             viewContainer.innerHTML = `
                 <div id="info-container">
                     <h1>Minhas Informações</h1>
@@ -101,6 +94,8 @@ function showInfo() {
                     <label for="senha">Sua senha</label>
                     <br />
                     <input type="password" placeholder="${data[0].senha}" name="senha" id="senha" disabled />
+                    <button>Editar</button>
+                    <button>Remover</button>
                 </div>`;
         });
 }
