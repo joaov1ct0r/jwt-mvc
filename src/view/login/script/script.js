@@ -60,7 +60,7 @@ function showInfo(email, senha) {
             let viewContainer = document.getElementById('view-container');
 
             viewContainer.innerHTML = `
-                <div id="info-container">
+                <div id="info-container" class='${data[0].id}'>
                     <h1>Minhas Informações</h1>
 
                     <br />
@@ -99,3 +99,87 @@ function showInfo(email, senha) {
                 </div>`;
         });
 }
+
+let viewContainer = document.getElementById('view-container');
+
+viewContainer.addEventListener('click', event => {
+    if (event.target.tagName === 'BUTTON') {
+        let button = event.target;
+
+        let infoContainer = button.parentNode;
+
+        if (button.textContent === 'Editar') {
+            let nome = document.createElement('input');
+
+            nome.type = 'text';
+
+            nome.placeholder = 'Nome';
+
+            infoContainer.insertBefore(nome, infoContainer.children[5]);
+
+            let email = document.createElement('input');
+
+            email.type = 'email';
+
+            email.placeholder = 'Email';
+
+            infoContainer.insertBefore(email, infoContainer.children[10]);
+
+            let idade = document.createElement('input');
+
+            idade.type = 'number';
+
+            idade.placeholder = 'Idade';
+
+            infoContainer.insertBefore(idade, infoContainer.children[15]);
+
+            let pais = document.createElement('input');
+
+            pais.type = 'text';
+
+            pais.placeholder = 'Pais';
+
+            infoContainer.insertBefore(pais, infoContainer.children[20]);
+
+            let senha = document.createElement('input');
+
+            senha.type = 'password';
+
+            senha.placeholder = 'Senha';
+
+            infoContainer.insertBefore(senha, infoContainer.children[25]);
+
+            button.textContent = 'Salvar';
+
+            button.addEventListener('click', () => {
+                editUser(
+                    nome.value,
+                    email.value,
+                    idade.value,
+                    pais.value,
+                    senha.value
+                );
+            });
+
+            function editUser(nome, email, idade, pais, senha) {
+                let url = `http://localhost:3000/api/edit/${infoContainer.className}`;
+
+                console.log(infoContainer);
+
+                let options = {
+                    method: 'PUT',
+                    body: JSON.stringify({ nome, email, idade, pais, senha }),
+                    headers: {
+                        'Content-type': 'application/json; charset=UTF-8'
+                    }
+                };
+
+                fetch(url, options).then(res => {
+                    console.log(res);
+
+                    showInfo(email, senha);
+                });
+            }
+        }
+    }
+});
