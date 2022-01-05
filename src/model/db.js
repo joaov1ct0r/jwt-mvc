@@ -1,6 +1,13 @@
-module.exports = {
-    usersDb: [],
+const mysql = require('mysql2');
 
+let db = mysql.createConnection({
+    host: '127.0.0.1',
+    user: 'root',
+    password: 'password',
+    database: 'cadLoginSys'
+});
+
+module.exports = {
     getUsers() {
         return this.usersDb;
     },
@@ -25,12 +32,12 @@ module.exports = {
             email !== this.usersDb[0].email ||
             senha !== this.usersDb[0].senha
         ) {
-            return "Falha na autenticação";
+            return 'Falha na autenticação';
         } else if (
             email == this.usersDb[0].email &&
             senha == this.usersDb[0].senha
         ) {
-            return "Login realizado com sucesso";
+            return 'Login realizado com sucesso';
         }
     },
 
