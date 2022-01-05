@@ -1,16 +1,18 @@
-const express = require("express");
+const express = require('express');
 
 const router = express.Router();
 
-const bodyParser = require("body-parser");
+const bodyParser = require('body-parser');
 
-const usersDb = require("../model/db");
+const db = require('../model/db.js');
 
-router.get("/all", (req, res) => {
-    res.send(JSON.stringify(usersDb.getUsers()));
+router.get('/all', (req, res) => {
+    let request = db.getUsers(function (result) {
+        res.send(JSON.stringify(result));
+    });
 });
 
-router.post("/new", bodyParser.json(), (req, res) => {
+router.post('/new', bodyParser.json(), (req, res) => {
     let { nome } = req.body;
 
     let { email } = req.body;
@@ -22,25 +24,25 @@ router.post("/new", bodyParser.json(), (req, res) => {
     let { senha } = req.body;
 
     if (nome && email && idade && pais && senha) {
-        usersDb.newUser(nome, email, idade, pais, senha);
+        db.newUser(nome, email, idade, pais, senha);
 
-        res.status(200).send("Cadastro adicionado com sucesso");
+        res.status(200).send('Cadastro adicionado com sucesso');
     } else {
-        res.status(400).send("Falha no cadastramento");
+        res.status(400).send('Falha no cadastramento');
     }
 });
 
-router.post("/login", bodyParser.json(), (req, res) => {
+router.post('/login', bodyParser.json(), (req, res) => {
     let { email } = req.body;
 
     let { senha } = req.body;
 
-    let resp = usersDb.userLogin(email, senha);
+    let resp = db.userLogin(email, senha);
 
     res.send(resp);
 });
 
-router.put("/edit/:index", bodyParser.json(), (req, res) => {
+router.put('/edit/:index', bodyParser.json(), (req, res) => {
     let { index } = req.params;
 
     let { nome } = req.body;
@@ -53,17 +55,17 @@ router.put("/edit/:index", bodyParser.json(), (req, res) => {
 
     let { senha } = req.body;
 
-    usersDb.changeUser(index, nome, email, idade, pais, senha);
+    db.changeUser(index, nome, email, idade, pais, senha);
 
-    res.send("Usuario alterado com sucesso");
+    res.send('Usuario alterado com sucesso');
 });
 
-router.delete("/cadastros/delete/:index", (req, res) => {
+router.delete('/cadastros/delete/:index', (req, res) => {
     let { index } = req.params;
 
-    usersDb.deleteUser(index);
+    db.deleteUser(index);
 
-    res.send("Usuario deletado com sucesso");
+    res.send('Usuario deletado com sucesso');
 });
 
 module.exports = router;
