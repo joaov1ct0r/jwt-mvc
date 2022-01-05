@@ -7,6 +7,7 @@ let db = mysql.createConnection({
     database: 'cadLoginSys'
 });
 
+// RETORNA TODOS OS CADASTROS
 let getUsers = callback => {
     let SQL = `SELECT * FROM usuarios`;
     db.query(SQL, (err, result) => {
@@ -17,23 +18,32 @@ let getUsers = callback => {
     });
 };
 
+// RETORNA UM CADASTRO EM ESPECIFICO
+let getUser = (index, callback) => {
+    let SQL = `SELECT * FROM usuarios WHERE email = ?`;
+    return this.usersDb[index];
+};
+
+// INSERE UM NOVO USUARIOS NO DB
+let newUser = (nome, email, idade, pais, senha, callback) => {
+    let SQL = `INSERT INTO usuarios (nome, email, idade, pais, senha) VALUES (?, ?, ?, ?, ?)`;
+
+    let params = [nome, email, idade, pais, senha];
+
+    db.query(SQL, params, (err, result) => {
+        if (err) {
+            throw err;
+        }
+        callback(result);
+    });
+};
+
 module.exports = {
     getUsers,
 
-    getUser(index) {
-        return this.usersDb[index];
-    },
+    getUser,
 
-    newUser(nome, email, idade, pais, senha) {
-        this.usersDb.push({
-            id: generateId(),
-            nome,
-            email,
-            idade,
-            pais,
-            senha
-        });
-    },
+    newUser,
 
     userLogin(email, senha) {
         if (
