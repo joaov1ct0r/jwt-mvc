@@ -7,17 +7,18 @@ let db = mysql.createConnection({
     database: 'cadLoginSys'
 });
 
-let getUsers = (callback) => {
-    let SQL = `SELECT * FROM usuarios`
+let getUsers = callback => {
+    let SQL = `SELECT * FROM usuarios`;
     db.query(SQL, (err, result) => {
-        if(err) {
+        if (err) {
             throw err;
-        }  callback(result)
-    })
-}
+        }
+        callback(result);
+    });
+};
 
 module.exports = {
-    ,
+    getUsers,
 
     getUser(index) {
         return this.usersDb[index];
