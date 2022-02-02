@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 
 const userController = require('../controller/userController');
 
-router.post('/info');
+router.post('/info', userController.info);
 
 router.post('/new', bodyParser.json(), (req, res) => {
     let { nome } = req.body;
