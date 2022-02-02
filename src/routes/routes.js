@@ -14,14 +14,6 @@ router.post('/login', userController.login);
 
 router.put('/edit/:index', userController.edit);
 
-router.delete('/delete/:index', (req, res) => {
-    let { index } = req.params;
-
-    let request = db.deleteUser(index, function (result) {
-        console.log(result);
-
-        res.send('Usuario deletado com sucesso');
-    });
-});
+router.delete('/delete/:index', userController.delete);
 
 module.exports = router;
