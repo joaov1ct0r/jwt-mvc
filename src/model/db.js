@@ -3,7 +3,7 @@ require('dotenv');
 const mysql = require('mysql2');
 
 let db = mysql.createConnection({
-    host: '127.0.0.1',
+    host: process.env.NODE_ENV_DB_HOST,
     user: 'root',
     password: 'password',
     database: 'cadLoginSys'
