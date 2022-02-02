@@ -6,7 +6,7 @@ let db = mysql.createPool({
     host: '127.0.0.1',
     port: '3306',
     user: 'root',
-    password: process.env.NODE_ENV_DB_PASSWORD,
+    password: 'password',
     database: process.env.NODE_ENV_DB_DATABASE
 });
 
