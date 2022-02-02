@@ -7,7 +7,7 @@ let db = mysql.createPool({
     port: '3306',
     user: 'root',
     password: 'password',
-    database: process.env.NODE_ENV_DB_DATABASE
+    database: 'cadLoginSys'
 });
 
 // RETORNA UM CADASTRO EM ESPECIFICO
