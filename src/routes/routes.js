@@ -10,21 +10,7 @@ router.post('/info', userController.info);
 
 router.post('/new', userController.new);
 
-router.post('/login', bodyParser.json(), (req, res) => {
-    let { email } = req.body;
-
-    let { senha } = req.body;
-
-    let request = db.userLogin(email, senha, async function (result) {
-        if (result.length < 1) {
-            console.log(result);
-            res.status(500).send('Falha na autenticação');
-        } else {
-            console.log(result);
-            res.status(200).send('Autenticação realizada com sucesso');
-        }
-    });
-});
+router.post('/login', userController.login);
 
 router.put('/edit/:index', bodyParser.json(), (req, res) => {
     let { index } = req.params;
