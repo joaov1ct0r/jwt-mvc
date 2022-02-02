@@ -14,6 +14,6 @@ app.use('/cadastro', express.static(path.join(__dirname, '/view/cadastro')));
 
 app.use('/login', express.static(path.join(__dirname, '/view/login')));
 
-app.listen(PORT, () => {
-    console.log(`Server running on port: ${PORT}`);
+app.listen(process.env.NODE_ENV_SERVER_PORT, () => {
+    console.log(`Server running on port: ${NODE_ENV_SERVER_PORT}`);
 });
