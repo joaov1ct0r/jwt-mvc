@@ -9,7 +9,15 @@ let user = {
         });
     },
 
-    new: function (req, res) {}
+    new: function (req, res) {
+        let { nome, email, idade, pais, senha } = req.body;
+
+        db.newUser(nome, email, idade, pais, senha, function (result) {
+            console.log(result);
+
+            res.send('Cadastro adicionado com sucesso');
+        });
+    }
 };
 
 module.exports = user;
