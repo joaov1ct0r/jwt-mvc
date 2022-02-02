@@ -8,30 +8,7 @@ const userController = require('../controller/userController');
 
 router.post('/info', userController.info);
 
-router.post('/new', bodyParser.json(), (req, res) => {
-    let { nome } = req.body;
-
-    let { email } = req.body;
-
-    let { idade } = req.body;
-
-    let { pais } = req.body;
-
-    let { senha } = req.body;
-
-    let request = db.newUser(
-        nome,
-        email,
-        idade,
-        pais,
-        senha,
-        function (result) {
-            console.log(result);
-
-            res.send('Cadastro adicionado com sucesso');
-        }
-    );
-});
+router.post('/new', userController.new);
 
 router.post('/login', bodyParser.json(), (req, res) => {
     let { email } = req.body;
