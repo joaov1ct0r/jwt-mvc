@@ -17,7 +17,9 @@ let user = {
 
             res.send('Cadastro adicionado com sucesso');
         });
-    }
+    },
+
+    login: function (req, res) {}
 };
 
 module.exports = user;
