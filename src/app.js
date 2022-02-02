@@ -1,18 +1,18 @@
-const express = require("express");
+const express = require('express');
 
 let app = express();
 
-const path = require("path");
+const path = require('path');
 
-const routes = require("./controller/routes");
+const routes = require('./routes/routes');
 
-app.use("/api", routes);
+app.use('/api', routes);
 
-app.use("/", express.static(path.join(__dirname, "/view")));
+app.use('/', express.static(path.join(__dirname, '/view')));
 
-app.use("/cadastro", express.static(path.join(__dirname, "/view/cadastro")));
+app.use('/cadastro', express.static(path.join(__dirname, '/view/cadastro')));
 
-app.use("/login", express.static(path.join(__dirname, "/view/login")));
+app.use('/login', express.static(path.join(__dirname, '/view/login')));
 
 const PORT = 3000;
 
