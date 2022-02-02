@@ -12,33 +12,7 @@ router.post('/new', userController.new);
 
 router.post('/login', userController.login);
 
-router.put('/edit/:index', bodyParser.json(), (req, res) => {
-    let { index } = req.params;
-
-    let { nome } = req.body;
-
-    let { email } = req.body;
-
-    let { idade } = req.body;
-
-    let { pais } = req.body;
-
-    let { senha } = req.body;
-
-    let request = db.changeUser(
-        index,
-        nome,
-        email,
-        idade,
-        pais,
-        senha,
-        function (result) {
-            console.log(result);
-
-            res.send('Usuario alterado com sucesso');
-        }
-    );
-});
+router.put('/edit/:index', userController.edit);
 
 router.delete('/delete/:index', (req, res) => {
     let { index } = req.params;
