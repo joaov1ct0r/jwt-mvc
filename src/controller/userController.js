@@ -51,7 +51,15 @@ let user = {
         );
     },
 
-    delete: function (req, res) {}
+    delete: function (req, res) {
+        let { index } = req.params;
+
+        db.deleteUser(index, function (result) {
+            console.log(result);
+
+            res.send('Usuario deletado com sucesso');
+        });
+    }
 };
 
 module.exports = user;
