@@ -20,6 +20,9 @@
   <li>body-parser</li>
   <p><code>npm install body-parser</code></p>
   <br>
+  <li>dotenv</li>
+  <p><code>npm install dotenv</code></p>
+  <br>
 </ul>
 
 <h2>Sobre</h2>
