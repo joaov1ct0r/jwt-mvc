@@ -33,7 +33,23 @@ let user = {
         });
     },
 
-    edit: function (req, res) {}
+    edit: function (req, res) {
+        let { index, nome, email, idade, pais, senha } = req.params;
+
+        db.changeUser(
+            index,
+            nome,
+            email,
+            idade,
+            pais,
+            senha,
+            function (result) {
+                console.log(result);
+
+                res.send('Usuario alterado com sucesso');
+            }
+        );
+    }
 };
 
 module.exports = user;
