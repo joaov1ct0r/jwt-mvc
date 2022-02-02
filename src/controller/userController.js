@@ -31,7 +31,9 @@ let user = {
                 res.status(200).send('Autenticação realizada com sucesso');
             }
         });
-    }
+    },
+
+    edit: function (req, res) {}
 };
 
 module.exports = user;
