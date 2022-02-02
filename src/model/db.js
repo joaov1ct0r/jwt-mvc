@@ -5,7 +5,7 @@ const mysql = require('mysql2');
 let db = mysql.createPool({
     host: '127.0.0.1',
     port: '3306',
-    user: process.env.NODE_ENV_DB_USER,
+    user: 'root',
     password: process.env.NODE_ENV_DB_PASSWORD,
     database: process.env.NODE_ENV_DB_DATABASE
 });
