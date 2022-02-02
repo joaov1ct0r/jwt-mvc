@@ -19,7 +19,19 @@ let user = {
         });
     },
 
-    login: function (req, res) {}
+    login: function (req, res) {
+        let { email, senha } = req.body;
+
+        db.userLogin(email, senha, function (result) {
+            if (result.length < 1) {
+                console.log(result);
+                res.status(500).send('Falha na autenticação');
+            } else {
+                console.log(result);
+                res.status(200).send('Autenticação realizada com sucesso');
+            }
+        });
+    }
 };
 
 module.exports = user;
