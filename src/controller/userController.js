@@ -7,7 +7,9 @@ let user = {
         db.getUser(email, senha, function (result) {
             res.send(JSON.stringify(result));
         });
-    }
+    },
+
+    new: function (req, res) {}
 };
 
 module.exports = user;
