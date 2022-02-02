@@ -5,7 +5,7 @@ const mysql = require('mysql2');
 let db = mysql.createConnection({
     host: process.env.NODE_ENV_DB_HOST,
     user: process.env.NODE_ENV_DB_USER,
-    password: 'password',
+    password: process.env.NODE_ENV_DB_PASSWORD,
     database: 'cadLoginSys'
 });
 
