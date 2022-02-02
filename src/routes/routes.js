@@ -4,15 +4,9 @@ const router = express.Router();
 
 const bodyParser = require('body-parser');
 
-router.post('/info', bodyParser.json(), (req, res) => {
-    let { email } = req.body;
+const userController = require('../controller/userController');
 
-    let { senha } = req.body;
-
-    let request = db.getUser(email, senha, function (result) {
-        res.send(JSON.stringify(result));
-    });
-});
+router.post('/info');
 
 router.post('/new', bodyParser.json(), (req, res) => {
     let { nome } = req.body;
