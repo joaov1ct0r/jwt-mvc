@@ -4,8 +4,6 @@ const router = express.Router();
 
 const bodyParser = require('body-parser');
 
-const db = require('../model/db.js');
-
 router.post('/info', bodyParser.json(), (req, res) => {
     let { email } = req.body;
 
