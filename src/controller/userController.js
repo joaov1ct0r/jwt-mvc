@@ -49,7 +49,9 @@ let user = {
                 res.send('Usuario alterado com sucesso');
             }
         );
-    }
+    },
+
+    delete: function (req, res) {}
 };
 
 module.exports = user;
