@@ -31,7 +31,7 @@ let user = {
     login: function (req, res) {
         let { email, senha } = req.body;
 
-        db.userLogin(email, senha, function (result) {
+        db.userLogin(email, function (result) {
             if (result.length < 1) {
                 console.log(result);
                 res.status(500).send('Falha na autenticação');

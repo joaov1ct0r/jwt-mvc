@@ -51,11 +51,10 @@ let changeUser = (index, nome, email, idade, pais, senha, callback) => {
 };
 
 // FAZ O LOGIN DE UM USUARIO
-let userLogin = (email, senha, callback) => {
-    let SQL = `SELECT email, senha FROM usuarios WHERE email = ? AND senha = ?`;
-    let params = [email, senha];
+let userLogin = (email, callback) => {
+    let SQL = `SELECT email, senha FROM usuarios WHERE email = ?`;
 
-    db.query(SQL, params, (err, result) => {
+    db.query(SQL, email, (err, result) => {
         if (err) {
             throw err;
         }
