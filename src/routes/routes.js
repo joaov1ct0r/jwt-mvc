@@ -4,6 +4,8 @@ const router = express.Router();
 
 const userController = require('../controller/userController');
 
+const authController = require('../controller/authController');
+
 router.post('/info', userController.info);
 
 router.post('/new', userController.new);
