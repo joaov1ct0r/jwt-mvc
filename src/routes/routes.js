@@ -6,7 +6,7 @@ const userController = require('../controller/userController');
 
 const authController = require('../controller/authController');
 
-router.post('/info', userController.info);
+router.post('/info', authController, userController.info);
 
 router.post('/new', userController.new);
 
