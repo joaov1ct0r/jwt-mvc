@@ -8,7 +8,7 @@ const authController = require('../controller/authController');
 
 router.post('/info', authController, userController.info);
 
-router.post('/new', userController.new);
+router.post('/new', authController, userController.new);
 
 router.post('/login', userController.login);
 
