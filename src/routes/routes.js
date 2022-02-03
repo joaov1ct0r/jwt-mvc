@@ -12,7 +12,7 @@ router.post('/new', authController, userController.new);
 
 router.post('/login', userController.login);
 
-router.put('/edit/:index', userController.edit);
+router.put('/edit/:index', authController, userController.edit);
 
 router.delete('/delete/:index', userController.delete);
 
