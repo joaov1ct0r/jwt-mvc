@@ -4,6 +4,8 @@ const bcrypt = require('bcryptjs');
 
 const jwt = require('jsonwebtoken');
 
+const jwtSecret = 'segredo';
+
 let user = {
     info: function (req, res) {
         let { email, senha } = req.body;
