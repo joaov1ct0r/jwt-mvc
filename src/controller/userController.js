@@ -2,6 +2,8 @@ const db = require('../model/db.js');
 
 const bcrypt = require('bcryptjs');
 
+const jwt = require('jsonwebtoken')
+
 let user = {
     info: function (req, res) {
         let { email, senha } = req.body;
