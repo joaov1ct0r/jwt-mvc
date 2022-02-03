@@ -2,7 +2,7 @@ const db = require('../model/db.js');
 
 const bcrypt = require('bcryptjs');
 
-const jwt = require('jsonwebtoken')
+const jwt = require('jsonwebtoken');
 
 let user = {
     info: function (req, res) {
@@ -40,6 +40,13 @@ let user = {
                 res.status(500).send('Falha na autenticação');
             } else {
                 console.log(result);
+
+                const token = jwt.sign(
+                    {
+                        email: result[0].email
+                    },
+                    jwtSecret
+                );
                 res.status(200).send('Autenticação realizada com sucesso');
             }
         });
