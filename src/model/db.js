@@ -9,12 +9,10 @@ let db = mysql.createPool({
 });
 
 // RETORNA UM CADASTRO EM ESPECIFICO
-let getUser = (email, senha, callback) => {
-    let SQL = `SELECT * FROM usuarios WHERE email = ? AND senha = ?`;
+let getUser = (email, callback) => {
+    let SQL = `SELECT * FROM usuarios WHERE email = ?`;
 
-    let params = [email, senha];
-
-    db.query(SQL, params, (err, result) => {
+    db.query(SQL, email, (err, result) => {
         if (err) {
             throw err;
         }
