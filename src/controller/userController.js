@@ -8,9 +8,9 @@ const jwtSecret = 'segredo';
 
 let user = {
     info: function (req, res) {
-        let { email, senha } = req.body;
+        let { email } = req.body;
 
-        db.getUser(email, senha, function (result) {
+        db.getUser(email, function (result) {
             res.send(JSON.stringify(result));
         });
     },
