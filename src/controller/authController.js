@@ -7,5 +7,9 @@ module.exports = (req, res, next) => {
 
     if (!token) return res.status(401).send('Falha na autenticação');
 
-    const userVerified = jwt.verify(token, jwtSecret);
+    try {
+        const userVerified = jwt.verify(token, jwtSecret);
+    } catch (error) {
+        res.status(401).send('Falha na autenticação');
+    }
 };
