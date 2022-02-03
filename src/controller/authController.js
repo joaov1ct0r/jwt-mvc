@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 
-const { jwtSecret } = require('../controller/userController');
+const jwtSecret = 'segredo';
 
 module.exports = (req, res, next) => {
     const token = req.headers('auth-token');

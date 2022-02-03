@@ -85,3 +85,5 @@ let user = {
 };
 
 module.exports = user;
+
+module.exports = jwtSecret;
