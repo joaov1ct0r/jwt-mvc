@@ -49,6 +49,7 @@ let user = {
                     },
                     jwtSecret
                 );
+                res.header('auth-token', token);
                 res.status(200).send('Autenticação realizada com sucesso');
             }
         });
