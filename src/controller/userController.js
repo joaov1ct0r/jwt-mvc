@@ -14,11 +14,18 @@ let user = {
     new: function (req, res) {
         let { nome, email, idade, pais, senha } = req.body;
 
-        db.newUser(nome, email, idade, pais, senha, function (result) {
-            console.log(result);
+        db.newUser(
+            nome,
+            email,
+            idade,
+            pais,
+            bcrypt.hashSync(senha),
+            function (result) {
+                console.log(result);
 
-            res.send('Cadastro adicionado com sucesso');
-        });
+                res.send('Cadastro adicionado com sucesso');
+            }
+        );
     },
 
     login: function (req, res) {
