@@ -32,7 +32,8 @@ let user = {
         let { email, senha } = req.body;
 
         db.userLogin(email, function (result) {
-            if (result.length < 1) {
+            let comparedPassword = bcrypt.compareSync(senha, result[0].senha);
+            if (!comparedPassword) {
                 console.log(result);
                 res.status(500).send('Falha na autenticação');
             } else {
