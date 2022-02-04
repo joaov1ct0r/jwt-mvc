@@ -179,6 +179,12 @@ viewContainer.addEventListener('click', event => {
 
                 console.log(infoContainer);
 
+                const equalChar = '=';
+
+                const cookies = document.cookie;
+
+                const token = cookies.split(equalChar)[1];
+
                 let options = {
                     method: 'PUT',
                     body: JSON.stringify({ nome, email, idade, pais, senha }),
