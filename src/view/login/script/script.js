@@ -189,7 +189,8 @@ viewContainer.addEventListener('click', event => {
                     method: 'PUT',
                     body: JSON.stringify({ nome, email, idade, pais, senha }),
                     headers: {
-                        'Content-type': 'application/json; charset=UTF-8'
+                        'Content-type': 'application/json; charset=UTF-8',
+                        'auth-token': token
                     }
                 };
 
