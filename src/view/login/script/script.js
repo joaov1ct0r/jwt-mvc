@@ -27,7 +27,7 @@ function doLogin() {
 
             console.log(token);
 
-            document.cookie = `token=${token}; path=/login`;
+            document.cookie = `token=${token}; Secure; path=/login`;
 
             showInfo(email, senha);
         } else if (res.status === 500) {
@@ -47,6 +47,12 @@ function doLogin() {
 
 function showInfo(email, senha) {
     let url = 'http://localhost:3000/api/info';
+
+    const equalChar = '=';
+
+    const cookies = document.cookie;
+
+    const token = cookies.split(equalChar)[1];
 
     let options = {
         method: 'POST',
