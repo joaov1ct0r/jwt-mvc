@@ -27,6 +27,8 @@ function doLogin() {
 
             console.log(token);
 
+            document.cookie = `token=${token}; path=/login`;
+
             showInfo(email, senha);
         } else if (res.status === 500) {
             document.getElementById('email').value = '';
