@@ -56,7 +56,9 @@ let user = {
     },
 
     edit: function (req, res) {
-        let { index, nome, email, idade, pais, senha } = req.params;
+        let { index } = req.params;
+
+        let { nome, email, idade, pais, senha } = req.body;
 
         db.changeUser(
             index,
