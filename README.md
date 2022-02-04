@@ -20,8 +20,11 @@
   <li>body-parser</li>
   <p><code>npm install body-parser</code></p>
   <br>
-  <li>dotenv</li>
-  <p><code>npm install dotenv</code></p>
+  <li>bcryptjs</li>
+  <p><code>npm install bcryptjs</code></p>
+  <br>
+  <li>jwt</li>
+  <p><code>npm install jsonwebtoken</code></p>
   <br>
 </ul>
 
