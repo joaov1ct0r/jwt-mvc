@@ -213,7 +213,8 @@ viewContainer.addEventListener('click', event => {
                 method: 'DELETE',
                 body: null,
                 headers: {
-                    'Content-type': 'application/json; charset=UTF-8'
+                    'Content-type': 'application/json; charset=UTF-8',
+                    'auth-token': token
                 }
             };
 
