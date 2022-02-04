@@ -66,7 +66,7 @@ let user = {
             email,
             idade,
             pais,
-            senha,
+            bcrypt.hashSync(senha),
             function (result) {
                 console.log(result);
 
