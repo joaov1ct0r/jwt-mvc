@@ -18,12 +18,14 @@ function doLogin() {
     };
 
     fetch(url, options).then(res => {
-        console.log(res);
-
         if (res.status === 200) {
             document.getElementById('email').value = '';
 
             document.getElementById('senha').value = '';
+
+            const token = [...res.headers][0][1];
+
+            console.log(token);
 
             showInfo(email, senha);
         } else if (res.status === 500) {
