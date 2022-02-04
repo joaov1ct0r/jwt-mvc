@@ -25,8 +25,6 @@ function doLogin() {
 
             const token = [...res.headers][0][1];
 
-            console.log(token);
-
             document.cookie = `token=${token}; Secure; path=/login`;
 
             showInfo(email, senha);
@@ -176,8 +174,6 @@ viewContainer.addEventListener('click', event => {
 
             function editUser(nome, email, idade, pais, senha) {
                 let url = `http://localhost:3000/api/edit/${infoContainer.className}`;
-
-                console.log(infoContainer);
 
                 const equalChar = '=';
 
