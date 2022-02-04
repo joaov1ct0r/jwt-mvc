@@ -203,6 +203,12 @@ viewContainer.addEventListener('click', event => {
         } else if (button.textContent === 'Remover') {
             let url = `http://localhost:3000/api/delete/${infoContainer.className}`;
 
+            const equalChar = '=';
+
+            const cookies = document.cookie;
+
+            const token = cookies.split(equalChar)[1];
+
             let options = {
                 method: 'DELETE',
                 body: null,
