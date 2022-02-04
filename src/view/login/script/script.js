@@ -57,7 +57,10 @@ function showInfo(email, senha) {
     let options = {
         method: 'POST',
         body: JSON.stringify({ email, senha }),
-        headers: { 'Content-type': 'application/json; charset=UTF-8' }
+        headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+            'auth-token': token
+        }
     };
 
     fetch(url, options)
