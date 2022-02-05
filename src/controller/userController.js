@@ -7,7 +7,7 @@ const jwt = require('jsonwebtoken');
 const jwtSecret = 'segredo';
 
 let user = {
-    info: function (req, res) {
+    info(req, res) {
         let { email } = req.body;
 
         db.getUser(email, function (result) {
@@ -15,7 +15,7 @@ let user = {
         });
     },
 
-    new: function (req, res) {
+    new(req, res) {
         let { nome, email, idade, pais, senha } = req.body;
 
         db.newUser(
@@ -32,7 +32,7 @@ let user = {
         );
     },
 
-    login: function (req, res) {
+    login(req, res) {
         let { email, senha } = req.body;
 
         db.userLogin(email, function (result) {
@@ -55,7 +55,7 @@ let user = {
         });
     },
 
-    edit: function (req, res) {
+    edit(req, res) {
         let { index } = req.params;
 
         let { nome, email, idade, pais, senha } = req.body;
@@ -75,7 +75,7 @@ let user = {
         );
     },
 
-    delete: function (req, res) {
+    delete(req, res) {
         let { index } = req.params;
 
         db.deleteUser(index, function (result) {
