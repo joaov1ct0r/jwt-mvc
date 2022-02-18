@@ -6,6 +6,12 @@ const jwt = require('jsonwebtoken');
 
 const jwtSecret = 'segredo';
 
+const {
+    registerValidate,
+    loginValidate,
+    editValidate
+} = require('./validateData');
+
 let user = {
     info(req, res) {
         let { email } = req.body;
