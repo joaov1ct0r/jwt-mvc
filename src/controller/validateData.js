@@ -20,3 +20,5 @@ const loginValidate = data => {
 
     return schema.validate(data);
 };
+
+const editValidate = data => {};
