@@ -17,4 +17,6 @@ const loginValidate = data => {
         email: Joi.string().required().min(9).max(50),
         senha: Joi.string().required().min(9).max(500)
     });
+
+    return schema.validate(data);
 };
