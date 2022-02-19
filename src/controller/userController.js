@@ -22,6 +22,11 @@ let user = {
     },
 
     new(req, res) {
+        let { error } = registerValidate(req.body);
+
+        if (error) {
+            return res.status(400).send('Falha no cadastramento');
+        }
         let { nome, email, idade, pais, senha } = req.body;
 
         db.newUser(
