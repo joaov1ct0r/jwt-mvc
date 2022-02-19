@@ -72,6 +72,11 @@ let user = {
     },
 
     edit(req, res) {
+        let { error } = editValidate(req.body);
+
+        if (error) {
+            return res.status(400).send('Falha na autenticação');
+        }
         let { index } = req.params;
 
         let { nome, email, idade, pais, senha } = req.body;
