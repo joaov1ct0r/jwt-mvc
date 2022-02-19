@@ -23,7 +23,6 @@ const loginValidate = data => {
 
 const editValidate = data => {
     let schema = Joi.object({
-        index: Joi.string().required(),
         nome: Joi.string().required().min(3).max(50),
         email: Joi.string().required().min(9).max(50),
         idade: Joi.string().required().min(2).max(3),
