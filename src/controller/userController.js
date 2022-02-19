@@ -44,6 +44,11 @@ let user = {
     },
 
     login(req, res) {
+        let { error } = loginValidate(req.body);
+
+        if (error) {
+            return res.status(400).send('Falha na autenticação');
+        }
         let { email, senha } = req.body;
 
         db.userLogin(email, function (result) {
