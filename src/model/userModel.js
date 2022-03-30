@@ -1,3 +1,5 @@
+import { DataTypes } from 'sequelize';
+
 import dbConnection from '../config/db.js';
 
 const mysql = require('mysql2');
