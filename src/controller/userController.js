@@ -52,13 +52,42 @@ const newUser = async (req, res) => {
     }
 };
 
-const userLogin = (req, res) => {
+const userLogin = async (req, res) => {
     let { error } = loginValidate(req.body);
 
-    if (error) {
-        return res.status(400).send('Falha na autenticação');
-    }
+    if (error) return res.status(400).send('Falha na autenticação');
+
     let { email, senha } = req.body;
+
+    try {
+        const user = await User.findOne({
+            where: {
+                email
+            }
+        });
+
+        if (!user) return res.status(400).send('Falha na autenticação');
+
+        const comparedPassword = bcrypt.compareSync(senha, user.senha);
+
+        if (!comparedPassword)
+            return res.status(400).send('Falha na autenticação');
+
+        const token = jwt.sign(
+            {
+                id: user.id
+            },
+            process.env.JWT_TOKEN_SECRET
+        );
+
+        if (token) {
+            res.cookie('auth', token, { httpOnly: true });
+
+            res.redirect('/info');
+        }
+    } catch (error) {
+        throw error;
+    }
 
     db.userLogin(email, function (result) {
         let comparedPassword = bcrypt.compareSync(senha, result[0].senha);
