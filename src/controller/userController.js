@@ -130,11 +130,20 @@ const userEdit = async (req, res) => {
 const userDelete = (req, res) => {
     let { index } = req.params;
 
-    db.deleteUser(index, function (result) {
-        console.log(result);
+    try {
+        const user = User.destroy({
+            where: {
+                id: index
+            }
+        });
 
-        res.send('Usuario deletado com sucesso');
-    });
+        if (!user)
+            return res.status(400).json({ msg: 'Falha ao deletar usuario' });
+
+        res.json({ msg: 'Usuario deletado com sucesso' });
+    } catch (error) {
+        throw error;
+    }
 };
 
 export { userDelete, userEdit, userInfo, userLogin, newUser };
