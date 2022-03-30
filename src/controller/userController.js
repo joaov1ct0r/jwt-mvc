@@ -20,7 +20,8 @@ const userInfo = async (req, res) => {
             }
         });
 
-        if (!user) return res.status(400).send('Falha ao obter dados!');
+        if (!user)
+            return res.status(400).json({ msg: 'Falha ao obter dados!' });
 
         res.send(JSON.stringify(user));
     } catch (error) {
@@ -31,7 +32,7 @@ const userInfo = async (req, res) => {
 const newUser = async (req, res) => {
     let { error } = registerValidate(req.body);
 
-    if (error) return res.status(400).send('Falha no cadastramento');
+    if (error) return res.status(400).json({ msg: 'Falha no cadastramento' });
 
     let { nome, email, idade, pais, senha } = req.body;
 
@@ -44,7 +45,8 @@ const newUser = async (req, res) => {
             senha: bcrypt.hashSync(senha)
         });
 
-        if (!user) return res.status(400).send('Falha no cadastramento!');
+        if (!user)
+            return res.status(400).json({ msg: 'Falha no cadastramento!' });
 
         res.send('Usuario cadastrado com sucesso');
     } catch (error) {
@@ -55,7 +57,7 @@ const newUser = async (req, res) => {
 const userLogin = async (req, res) => {
     let { error } = loginValidate(req.body);
 
-    if (error) return res.status(400).send('Falha na autenticação');
+    if (error) return res.status(400).json({ msg: 'Falha na autenticação' });
 
     let { email, senha } = req.body;
 
@@ -66,12 +68,13 @@ const userLogin = async (req, res) => {
             }
         });
 
-        if (!user) return res.status(400).send('Falha na autenticação');
+        if (!user)
+            return res.status(400).json({ msg: 'Falha na autenticação' });
 
         const comparedPassword = bcrypt.compareSync(senha, user.senha);
 
         if (!comparedPassword)
-            return res.status(400).send('Falha na autenticação');
+            return res.status(400).json({ msg: 'Falha na autenticação' });
 
         const token = jwt.sign(
             {
@@ -90,29 +93,38 @@ const userLogin = async (req, res) => {
     }
 };
 
-const userEdit = (req, res) => {
+const userEdit = async (req, res) => {
     let { error } = editValidate(req.body);
 
-    if (error) {
-        return res.status(400).send('Falha na autenticação');
-    }
+    if (error) return res.status(400).json({ msg: 'Falha na autenticação' });
+
     let { index } = req.params;
 
     let { nome, email, idade, pais, senha } = req.body;
 
-    db.changeUser(
-        index,
-        nome,
-        email,
-        idade,
-        pais,
-        bcrypt.hashSync(senha),
-        function (result) {
-            console.log(result);
+    try {
+        const user = await User.update(
+            {
+                email,
+                idade,
+                nome,
+                pais,
+                senha: bcrypt.hashSync(senha)
+            },
+            {
+                where: {
+                    id: index
+                }
+            }
+        );
 
-            res.send('Usuario alterado com sucesso');
-        }
-    );
+        if (!user)
+            return res.status(400).json({ msg: 'Falha ao alterar usuario' });
+
+        res.json({ msg: 'Usuario alterado com sucesso' });
+    } catch (error) {
+        throw error;
+    }
 };
 
 const userDelete = (req, res) => {
