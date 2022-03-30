@@ -12,6 +12,8 @@ const {
     editValidate
 } = require('./validateData');
 
+import User from '../model/userModel.js';
+
 let user = {
     info(req, res) {
         let { email } = req.body;
