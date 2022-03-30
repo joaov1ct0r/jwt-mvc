@@ -40,6 +40,10 @@ const User = dbConnection.define(
     }
 );
 
+User.sync();
+
+export default User;
+
 const mysql = require('mysql2');
 
 let db = mysql.createPool({
