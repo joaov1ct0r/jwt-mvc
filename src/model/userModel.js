@@ -1,3 +1,5 @@
+import dbConnection from '../config/db.js';
+
 const mysql = require('mysql2');
 
 let db = mysql.createPool({
