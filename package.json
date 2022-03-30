@@ -1,13 +1,14 @@
 {
-  "name": "cadUsuarios",
+  "name": "register-login-users",
   "version": "1.0.0",
-  "description": "",
+  "author": "github.com/joaov1ct0r",
+  "description": "Sistema de cadastro e login de usuarios com arquitetura MVC, Front-end criado com HTML, CSS, Javascript e Back-end com NodeJS(Express) com rotas protegidas por JWT (Json Web Token) encriptando e autenticando os dados e armazenando os no banco de dados MySQL.",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node src/index.js"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["html5", "css3", "javascript", "nodejs", "mysql", "sequelize", "express", "@hapi/joi", "bcryptjs", "body-parser", "jsonwebtoken"],
   "license": "ISC",
   "dependencies": {
     "@hapi/joi": "^17.1.1",
