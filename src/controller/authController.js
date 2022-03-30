@@ -1,8 +1,6 @@
-const jwt = require('jsonwebtoken');
+import jwt from 'jsonwebtoken';
 
-const jwtSecret = 'segredo';
-
-module.exports = (req, res, next) => {
+export default function (req, res, next) {
     const token = req.header('auth-token');
 
     if (!token) return res.status(401).send('Falha na autenticação');
@@ -10,8 +8,10 @@ module.exports = (req, res, next) => {
     try {
         const userVerified = jwt.verify(token, jwtSecret);
 
+        if (!userVerified) return res.status(400).send('Falha na autenticação');
+
         next();
     } catch (error) {
-        res.status(401).send('Falha na autenticação');
+        throw error;
     }
-};
+}
