@@ -140,7 +140,7 @@ const userDelete = (req, res) => {
         if (!user)
             return res.status(400).json({ msg: 'Falha ao deletar usuario' });
 
-        res.json({ msg: 'Usuario deletado com sucesso' });
+        res.redirect('/login');
     } catch (error) {
         throw error;
     }
