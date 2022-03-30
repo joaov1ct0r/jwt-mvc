@@ -6,11 +6,11 @@ const jwt = require('jsonwebtoken');
 
 const jwtSecret = 'segredo';
 
-const {
+import {
     registerValidate,
     loginValidate,
     editValidate
-} = require('./validateData');
+} from './validateData.js';
 
 import User from '../model/userModel.js';
 
