@@ -1,14 +1,20 @@
-const express = require('express');
+import express from 'express';
 
-const bodyParser = require('body-parser');
+import bodyParser from 'body-parser';
+
+import userRoutes from './routes/userRoutes';
+
+import path from 'path';
+
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+
+const __dirname = path.dirname(__filename);
 
 let app = express();
 
-const path = require('path');
-
-const routes = require('./routes/routes');
-
-app.use('/api', bodyParser.json(), routes);
+app.use('/api', bodyParser.json(), userRoutes);
 
 app.use('/', express.static(path.join(__dirname, '/view')));
 
