@@ -13,9 +13,19 @@ import jwt from 'jsonwebtoken';
 const userInfo = async (req, res) => {
     let { email } = req.body;
 
-    db.getUser(email, function (result) {
-        res.send(JSON.stringify(result));
-    });
+    try {
+        const user = User.findOne({
+            where: {
+                email: email
+            }
+        });
+
+        if (!user) return res.status(400).send('Falha ao obter dados!');
+
+        res.send(JSON.stringify(user));
+    } catch (error) {
+        throw error;
+    }
 };
 
 const newUser = (req, res) => {
