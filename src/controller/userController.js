@@ -88,25 +88,6 @@ const userLogin = async (req, res) => {
     } catch (error) {
         throw error;
     }
-
-    db.userLogin(email, function (result) {
-        let comparedPassword = bcrypt.compareSync(senha, result[0].senha);
-        if (!comparedPassword) {
-            console.log(result);
-            res.status(500).send('Falha na autenticação');
-        } else {
-            console.log(result);
-
-            const token = jwt.sign(
-                {
-                    email: result[0].email
-                },
-                jwtSecret
-            );
-            res.header('auth-token', token);
-            res.status(200).send('Autenticação realizada com sucesso');
-        }
-    });
 };
 
 const userEdit = (req, res) => {
