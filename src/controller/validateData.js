@@ -1,4 +1,4 @@
-const Joi = require('@hapi/joi');
+import Joi from '@hapi/joi';
 
 const registerValidate = data => {
     let schema = Joi.object({
@@ -33,8 +33,4 @@ const editValidate = data => {
     return schema.validate(data);
 };
 
-module.exports = {
-    registerValidate,
-    loginValidate,
-    editValidate
-};
+export { registerValidate, loginValidate, editValidate };
