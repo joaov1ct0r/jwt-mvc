@@ -14,9 +14,9 @@ const userInfo = async (req, res) => {
     let { email } = req.body;
 
     try {
-        const user = User.findOne({
+        const user = await User.findOne({
             where: {
-                email: email
+                email
             }
         });
 
@@ -28,26 +28,28 @@ const userInfo = async (req, res) => {
     }
 };
 
-const newUser = (req, res) => {
+const newUser = async (req, res) => {
     let { error } = registerValidate(req.body);
 
-    if (error) {
-        return res.status(400).send('Falha no cadastramento');
-    }
+    if (error) return res.status(400).send('Falha no cadastramento');
+
     let { nome, email, idade, pais, senha } = req.body;
 
-    db.newUser(
-        nome,
-        email,
-        idade,
-        pais,
-        bcrypt.hashSync(senha),
-        function (result) {
-            console.log(result);
+    try {
+        const user = await User.create({
+            email,
+            idade,
+            nome,
+            pais,
+            senha: bcrypt.hashSync(senha)
+        });
 
-            res.send('Cadastro adicionado com sucesso');
-        }
-    );
+        if (!user) return res.status(400).send('Falha no cadastramento!');
+
+        res.send('Usuario cadastrado com sucesso');
+    } catch (error) {
+        throw error;
+    }
 };
 
 const userLogin = (req, res) => {
