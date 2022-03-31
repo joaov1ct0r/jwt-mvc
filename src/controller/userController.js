@@ -11,7 +11,7 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 
 const userInfo = async (req, res) => {
-    let { email } = req.cookie.email;
+    let { email } = req.cookies.email;
 
     try {
         const user = await User.findOne({
@@ -86,7 +86,7 @@ const userLogin = async (req, res) => {
         if (token) {
             res.cookie('auth', token, { httpOnly: true });
 
-            res.cookie('email', user.email, { httpOnly: true });
+            // res.cookie('email', user.email, { httpOnly: true });
 
             res.redirect('/info');
         }
