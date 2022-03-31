@@ -86,6 +86,8 @@ const userLogin = async (req, res) => {
         if (token) {
             res.cookie('auth', token, { httpOnly: true });
 
+            res.cookie('email', user.email, { httpOnly: true });
+
             res.redirect('/info');
         }
     } catch (error) {
