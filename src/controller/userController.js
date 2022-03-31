@@ -11,7 +11,7 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 
 const userInfo = async (req, res) => {
-    let { email } = req.body;
+    let { email } = req.cookie.email;
 
     try {
         const user = await User.findOne({
