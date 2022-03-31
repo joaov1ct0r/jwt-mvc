@@ -1,14 +1,14 @@
 import jwt from 'jsonwebtoken';
 
 export default function (req, res, next) {
-    const token = req.header('auth-token');
+    const token = req.cookies.auth;
 
-    if (!token) return res.status(401).send('Falha na autenticação');
+    if (!token) return res.redirect('/login');
 
     try {
-        const userVerified = jwt.verify(token, jwtSecret);
+        const userVerified = jwt.verify(token, process.env.JWT_TOKEN_SECRET);
 
-        if (!userVerified) return res.status(400).send('Falha na autenticação');
+        if (!userVerified) return res.redirect('/login');
 
         next();
     } catch (error) {
