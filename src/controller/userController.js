@@ -83,13 +83,11 @@ const userLogin = async (req, res) => {
             process.env.JWT_TOKEN_SECRET
         );
 
-        if (token) {
-            res.cookie('auth', token, { httpOnly: true });
+        res.cookie('auth', token, { httpOnly: true });
 
-            // res.cookie('email', user.email, { httpOnly: true });
+        res.cookie('email', user.email, { httpOnly: true });
 
-            res.redirect('/info');
-        }
+        res.redirect('/info');
     } catch (error) {
         throw error;
     }

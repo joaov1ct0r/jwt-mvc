@@ -19,7 +19,7 @@ async function doLogin() {
 
     const response = await fetch(url, options);
 
-    if (response.status === 500) {
+    if (response.status === 200) {
         document.getElementById('email').value = '';
 
         document.getElementById('senha').value = '';
@@ -32,6 +32,6 @@ async function doLogin() {
 
         document.getElementById('senha').value = '';
 
-        alert(response.msg);
+        alert('Falha na autenticação');
     }
 }
