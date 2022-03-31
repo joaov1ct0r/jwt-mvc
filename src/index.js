@@ -6,6 +6,8 @@ import bodyParser from 'body-parser';
 
 import userRoutes from './routes/userRoutes.js';
 
+import authController from './controller/authController.js';
+
 import path from 'path';
 
 import { fileURLToPath } from 'url';
@@ -25,7 +27,11 @@ app.use(
 
 app.use('/login', express.static(path.join(__dirname, '/view', '/login')));
 
-app.use('/info', express.static(path.join(__dirname, '/view', '/info')));
+app.use(
+    '/info',
+    authController,
+    express.static(path.join(__dirname, '/view', '/info'))
+);
 
 app.listen(process.env.SERVER_PORT, () => {
     console.log('Server running');
