@@ -20,7 +20,7 @@ const __dirname = path.dirname(__filename);
 
 let app = express();
 
-app.use('/api', bodyParser.json(), userRoutes);
+app.use('/api', cookieParser(), bodyParser.json(), userRoutes);
 
 app.use(
     '/cadastro',
