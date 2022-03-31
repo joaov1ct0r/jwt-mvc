@@ -1,0 +1,92 @@
+* {
+  font-family: sans-serif;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #555555;
+}
+
+header {
+  display: flex;
+  justify-content: center;
+  height: 50px;
+  background-color: #a2a2a28e;
+}
+
+header ul {
+  margin-top: 15px;
+  list-style: none;
+}
+
+header ul li {
+  display: inline;
+  margin-top: 50px;
+  padding-right: 20px;
+}
+
+header ul li a {
+  margin-top: 50px;
+  text-decoration: none;
+  color: white;
+}
+
+header ul li a:hover {
+  color: blue;
+  transition: 0.5s;
+}
+
+#view-container {
+  display: block;
+  width: 250px;
+  margin: auto;
+}
+
+#view-container #info-container {
+  display: block;
+  width: 300px;
+  height: 400px;
+  margin: 50px auto auto auto;
+  background-color: #ffffff9a;
+  border: 1px solid white;
+  border-radius: 10px;
+}
+
+#view-container #info-container h1 {
+  padding-top: 5px;
+  text-align: center;
+  font-size: 25px;
+  color: white;
+}
+
+#view-container #info-container label {
+  display: inline-block;
+  width: 200px;
+  text-align: right;
+  color: blue;
+  padding-top: 5px;
+}
+
+#view-container #info-container input {
+  display: block;
+  width: 250px;
+  height: 22px;
+  margin: auto;
+}
+
+#view-container #info-container button {
+  display: block;
+  width: 100px;
+  height: 30px;
+  background-color: blue;
+  color: white;
+  margin: auto;
+}
+#view-container #info-container button:hover {
+  color: blue;
+  background-color: white;
+  transition: 0.5s;
+}
