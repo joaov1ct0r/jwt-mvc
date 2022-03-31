@@ -48,7 +48,7 @@ const newUser = async (req, res) => {
         if (!user)
             return res.status(400).json({ msg: 'Falha no cadastramento!' });
 
-        res.send('Usuario cadastrado com sucesso');
+        res.redirect('/login');
     } catch (error) {
         throw error;
     }
