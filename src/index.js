@@ -31,6 +31,7 @@ app.use('/login', express.static(path.join(__dirname, '/view', '/login')));
 
 app.use(
     '/info',
+    cookieParser(),
     authController,
     express.static(path.join(__dirname, '/view', '/info'))
 );
