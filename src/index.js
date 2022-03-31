@@ -25,7 +25,7 @@ app.use(
 
 app.use('/login', express.static(path.join(__dirname, '/view', '/login')));
 
-app.use('/info', express.static(path.join(__dirname, '/view', 'info')));
+app.use('/info', express.static(path.join(__dirname, '/view', '/info')));
 
 app.listen(process.env.SERVER_PORT, () => {
     console.log('Server running');
