@@ -4,7 +4,7 @@ import express from 'express';
 
 import bodyParser from 'body-parser';
 
-import userRoutes from './routes/userRoutes';
+import userRoutes from './routes/userRoutes.js';
 
 import path from 'path';
 
