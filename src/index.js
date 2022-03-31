@@ -4,6 +4,8 @@ import express from 'express';
 
 import bodyParser from 'body-parser';
 
+import cookieParser from 'cookie-parser';
+
 import userRoutes from './routes/userRoutes.js';
 
 import authController from './controller/authController.js';
