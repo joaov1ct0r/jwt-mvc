@@ -19,8 +19,6 @@ async function doLogin() {
 
     const response = await fetch(url, options);
 
-    console.log(response);
-
     if (response.status === 500) {
         document.getElementById('email').value = '';
 
