@@ -1,10 +1,6 @@
 let submitLogin = document.getElementById('submitLogin');
 
-submitLogin.addEventListener('click', () => {
-    doLogin();
-});
-
-async function doLogin() {
+submitLogin.addEventListener('click', async () => {
     let email = document.getElementById('email').value;
 
     let senha = document.getElementById('senha').value;
@@ -34,4 +30,4 @@ async function doLogin() {
 
         alert('Falha na autenticação');
     }
-}
+});
