@@ -1,69 +1,73 @@
-function showInfo(email) {
+document.addEventListener('DOMContentLoaded', () => {
+    showInfo();
+});
+
+function getCookieValueByName(name) {
+    const match = document.cookie.match(
+        new RegExp('(^| )' + name + '=([^;]+)')
+    );
+    return match ? match[2] : '';
+}
+
+async function showInfo() {
     let url = 'http://localhost:3000/api/info';
-
-    const equalChar = '=';
-
-    const cookies = document.cookie;
-
-    const token = cookies.split(equalChar)[1];
 
     let options = {
         method: 'POST',
-        body: JSON.stringify({ email, senha }),
+        body: null,
         headers: {
-            'Content-type': 'application/json; charset=UTF-8',
-            'auth-token': token
+            'Content-type': 'application/json; charset=UTF-8'
         }
     };
 
-    fetch(url, options)
-        .then(res => {
-            let data = res.json();
+    const response = await fetch(url, options);
 
-            return data;
-        })
-        .then(data => {
-            let viewContainer = document.getElementById('view-container');
+    if (response.status === 200) {
+        const data = await response.json();
 
-            viewContainer.innerHTML = `
-              <div id="info-container" class='${data[0].id}'>
+        console.log(data);
+
+        let viewContainer = document.getElementById('view-container');
+
+        viewContainer.innerHTML = `
+              <div id="info-container" class='${data.id}'>
                   <h1>Minhas Informações</h1>
 
                   <br />
 
                   <label for="nome">Seu nome</label>
                   <br />
-                  <input type="name" placeholder="${data[0].nome}" name="nome" id="nome" disabled/>
+                  <input type="name" placeholder="${data.nome}" name="nome" id="nome" disabled/>
 
                   <br />
 
                   <label for="email">Seu email</label>
                   <br />
-                  <input type="email" placeholder="${data[0].email}" name="email" id="email" disabled
+                  <input type="email" placeholder="${data.email}" name="email" id="email" disabled
                   />
 
                   <br />
 
                   <label for="idade">Sua Idade</label>
                   <br />
-                  <input type="number" placeholder="${data[0].idade}" name="idade" id="idade" disabled
+                  <input type="number" placeholder="${data.idade}" name="idade" id="idade" disabled
                   />
 
                   <br />
 
                   <label for="pais">Seu país</label>
                   <br />
-                  <input type="text" placeholder="${data[0].pais}" name="pais" id="pais" disabled />
+                  <input type="text" placeholder="${data.pais}" name="pais" id="pais" disabled />
 
                   <br />
 
                   <label for="senha">Sua senha</label>
                   <br />
-                  <input type="password" placeholder="${data[0].senha}" name="senha" id="senha" disabled />
+                  <input type="password" placeholder="${data.senha}" name="senha" id="senha" disabled />
                   <button>Editar</button>
                   <button>Remover</button>
               </div>`;
-        });
+    }
 }
 
 let viewContainer = document.getElementById('view-container');
