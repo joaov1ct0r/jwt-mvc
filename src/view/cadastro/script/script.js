@@ -1,67 +1,51 @@
-const submitCadastro = document.getElementById("submitCadastro");
+const submitCadastro = document.getElementById('submitCadastro');
 
-submitCadastro.addEventListener("click", () => {
-    newUser();
-});
+submitCadastro.addEventListener('click', async () => {
+    let nome = document.getElementById('nome').value;
 
-function newUser() {
-    let nome = document.getElementById("nome").value;
+    let email = document.getElementById('email').value;
 
-    let email = document.getElementById("email").value;
+    let idade = document.getElementById('idade').value;
 
-    let idade = document.getElementById("idade").value;
+    let pais = document.getElementById('pais').value;
 
-    let pais = document.getElementById("pais").value;
+    let senha = document.getElementById('senha').value;
 
-    let senha = document.getElementById("senha").value;
-
-    let user = { nome, email, idade, pais, senha };
-
-    const url = "http://localhost:3000/api/new";
+    const url = 'http://localhost:3000/api/new';
 
     const options = {
-        method: "POST",
-        body: JSON.stringify(user),
-        headers: { "Content-type": "application/json; charset=UTF-8" }
+        method: 'POST',
+        body: JSON.stringify({ nome, email, idade, pais, senha }),
+        headers: { 'Content-type': 'application/json; charset=UTF-8' }
     };
 
-    fetch(url, options).then(res => {
-        console.log(res);
+    const response = await fetch(url, options);
 
-        if (res.status === 200) {
-            document.getElementById("nome").value = "";
+    if (response.status === 200) {
+        document.getElementById('nome').value = '';
 
-            document.getElementById("email").value = "";
+        document.getElementById('email').value = '';
 
-            document.getElementById("idade").value = "";
+        document.getElementById('idade').value = '';
 
-            document.getElementById("pais").value = "";
+        document.getElementById('pais').value = '';
 
-            document.getElementById("senha").value = "";
+        document.getElementById('senha').value = '';
 
-            let viewContainer = document.getElementById("view-container");
+        alert('Cadastro realizado com sucesso!');
 
-            viewContainer.innerHTML = `
-            <div id="user-response">
-                <p>CADASTRO REALIZADO COM SUCESSO</p>
-            </div>`;
-        } else {
-            document.getElementById("nome").value = "";
+        window.location.href = response.url;
+    } else {
+        document.getElementById('nome').value = '';
 
-            document.getElementById("email").value = "";
+        document.getElementById('email').value = '';
 
-            document.getElementById("idade").value = "";
+        document.getElementById('idade').value = '';
 
-            document.getElementById("pais").value = "";
+        document.getElementById('pais').value = '';
 
-            document.getElementById("senha").value = "";
+        document.getElementById('senha').value = '';
 
-            let viewContainer = document.getElementById("view-container");
-
-            viewContainer.innerHTML = `
-            <div id="user-response">
-                <p>FALHA NO CADASTRO</p>
-            </div>`;
-        }
-    });
-}
+        alert('Falha ao realizar cadastro');
+    }
+});
