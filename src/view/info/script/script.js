@@ -1,15 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
-    showInfo();
-});
-
-function getCookieValueByName(name) {
-    const match = document.cookie.match(
-        new RegExp('(^| )' + name + '=([^;]+)')
-    );
-    return match ? match[2] : '';
-}
-
-async function showInfo() {
+document.addEventListener('DOMContentLoaded', async () => {
     let url = 'http://localhost:3000/api/info';
 
     let options = {
@@ -25,167 +14,148 @@ async function showInfo() {
     if (response.status === 200) {
         const data = await response.json();
 
-        console.log(data);
-
         let viewContainer = document.getElementById('view-container');
 
         viewContainer.innerHTML = `
-              <div id="info-container" class='${data.id}'>
-                  <h1>Minhas Informações</h1>
+            <div id="info-container" class='${data.id}'>
+                <h1>Minhas Informações</h1>
 
-                  <br />
+                <br />
 
-                  <label for="nome">Seu nome</label>
-                  <br />
-                  <input type="name" placeholder="${data.nome}" name="nome" id="nome" disabled/>
+                <label for="nome">Seu nome</label>
+                <br />
+                <input type="name" placeholder="${data.nome}" name="nome" id="nome" disabled/>
 
-                  <br />
+                <br />
 
-                  <label for="email">Seu email</label>
-                  <br />
-                  <input type="email" placeholder="${data.email}" name="email" id="email" disabled
-                  />
+                <label for="email">Seu email</label>
+                <br />
+                <input type="email" placeholder="${data.email}" name="email" id="email" disabled
+                />
 
-                  <br />
+                <br />
 
-                  <label for="idade">Sua Idade</label>
-                  <br />
-                  <input type="number" placeholder="${data.idade}" name="idade" id="idade" disabled
-                  />
+                <label for="idade">Sua Idade</label>
+                <br />
+                <input type="number" placeholder="${data.idade}" name="idade" id="idade" disabled
+                />
 
-                  <br />
+                <br />
 
-                  <label for="pais">Seu país</label>
-                  <br />
-                  <input type="text" placeholder="${data.pais}" name="pais" id="pais" disabled />
+                <label for="pais">Seu país</label>
+                <br />
+                <input type="text" placeholder="${data.pais}" name="pais" id="pais" disabled />
 
-                  <br />
+                <br />
 
-                  <label for="senha">Sua senha</label>
-                  <br />
-                  <input type="password" placeholder="${data.senha}" name="senha" id="senha" disabled />
-                  <button>Editar</button>
-                  <button>Remover</button>
-              </div>`;
-    }
-}
+                <label for="senha">Sua senha</label>
+                <br />
+                <input type="password" placeholder="${data.senha}" name="senha" id="senha" disabled />
+                <button>Editar</button>
+                <button>Remover</button>
+            </div>`;
 
-let viewContainer = document.getElementById('view-container');
+        viewContainer.addEventListener('click', async event => {
+            if (event.target.tagName === 'BUTTON') {
+                let button = event.target;
 
-viewContainer.addEventListener('click', event => {
-    if (event.target.tagName === 'BUTTON') {
-        let button = event.target;
+                let infoContainer = button.parentNode;
 
-        let infoContainer = button.parentNode;
+                if (button.textContent === 'Editar') {
+                    let nome = document.createElement('input');
 
-        if (button.textContent === 'Editar') {
-            let nome = document.createElement('input');
+                    nome.type = 'text';
 
-            nome.type = 'text';
+                    nome.placeholder = data.nome;
 
-            nome.placeholder = 'Nome';
+                    infoContainer.insertBefore(nome, infoContainer.children[5]);
 
-            infoContainer.insertBefore(nome, infoContainer.children[5]);
+                    let email = document.createElement('input');
 
-            let email = document.createElement('input');
+                    email.type = 'email';
 
-            email.type = 'email';
+                    email.placeholder = data.email;
 
-            email.placeholder = 'Email';
+                    infoContainer.insertBefore(
+                        email,
+                        infoContainer.children[10]
+                    );
 
-            infoContainer.insertBefore(email, infoContainer.children[10]);
+                    let idade = document.createElement('input');
 
-            let idade = document.createElement('input');
+                    idade.type = 'number';
 
-            idade.type = 'number';
+                    idade.placeholder = data.idade;
 
-            idade.placeholder = 'Idade';
+                    infoContainer.insertBefore(
+                        idade,
+                        infoContainer.children[15]
+                    );
 
-            infoContainer.insertBefore(idade, infoContainer.children[15]);
+                    let pais = document.createElement('input');
 
-            let pais = document.createElement('input');
+                    pais.type = 'text';
 
-            pais.type = 'text';
+                    pais.placeholder = data.pais;
 
-            pais.placeholder = 'Pais';
+                    infoContainer.insertBefore(
+                        pais,
+                        infoContainer.children[20]
+                    );
 
-            infoContainer.insertBefore(pais, infoContainer.children[20]);
+                    let senha = document.createElement('input');
 
-            let senha = document.createElement('input');
+                    senha.type = 'password';
 
-            senha.type = 'password';
+                    senha.placeholder = data.senha;
 
-            senha.placeholder = 'Senha';
+                    infoContainer.insertBefore(
+                        senha,
+                        infoContainer.children[25]
+                    );
 
-            infoContainer.insertBefore(senha, infoContainer.children[25]);
+                    button.textContent = 'Salvar';
 
-            button.textContent = 'Salvar';
+                    button.addEventListener('click', async () => {
+                        let url = `http://localhost:3000/api/edit/${infoContainer.className}`;
 
-            button.addEventListener('click', () => {
-                editUser(
-                    nome.value,
-                    email.value,
-                    idade.value,
-                    pais.value,
-                    senha.value
-                );
-            });
+                        let options = {
+                            method: 'PUT',
+                            body: JSON.stringify({
+                                nome,
+                                email,
+                                idade,
+                                pais,
+                                senha
+                            }),
+                            headers: {
+                                'Content-type':
+                                    'application/json; charset=UTF-8'
+                            }
+                        };
 
-            function editUser(nome, email, idade, pais, senha) {
-                let url = `http://localhost:3000/api/edit/${infoContainer.className}`;
+                        const response = await fetch(url, options);
 
-                const equalChar = '=';
+                        window.location.href = '/info';
+                    });
+                } else if (button.textContent === 'Remover') {
+                    let url = `http://localhost:3000/api/delete/${infoContainer.className}`;
 
-                const cookies = document.cookie;
+                    let options = {
+                        method: 'DELETE',
+                        body: null,
+                        headers: {
+                            'Content-type': 'application/json; charset=UTF-8'
+                        }
+                    };
 
-                const token = cookies.split(equalChar)[1];
+                    const response = await fetch(url, options);
 
-                let options = {
-                    method: 'PUT',
-                    body: JSON.stringify({ nome, email, idade, pais, senha }),
-                    headers: {
-                        'Content-type': 'application/json; charset=UTF-8',
-                        'auth-token': token
-                    }
-                };
-
-                fetch(url, options).then(res => {
-                    console.log(res);
-
-                    showInfo(email, senha);
-                });
+                    if (response.status === 200)
+                        alert('Dados deletados com sucesso!');
+                    else alert('Falha ao deletar dados!');
+                }
             }
-        } else if (button.textContent === 'Remover') {
-            let url = `http://localhost:3000/api/delete/${infoContainer.className}`;
-
-            const equalChar = '=';
-
-            const cookies = document.cookie;
-
-            const token = cookies.split(equalChar)[1];
-
-            let options = {
-                method: 'DELETE',
-                body: null,
-                headers: {
-                    'Content-type': 'application/json; charset=UTF-8',
-                    'auth-token': token
-                }
-            };
-
-            fetch(url, options).then(res => {
-                console.log(res);
-
-                if (res.status === 200) {
-                    infoContainer.innerHTML = `<div id="user-response">
-                                              <p>CADASTRO DELETADO COM SUCESSO</p>
-                                            </div>`;
-                } else {
-                    infoContainer.innerHTML = `<div id="user-response">
-                                              <p>FALHA NA AUTENTICAÇÃO</p>
-                                            </div>`;
-                }
-            });
-        }
-    }
+        });
+    } else alert('Falha ao obter dados!');
 });
